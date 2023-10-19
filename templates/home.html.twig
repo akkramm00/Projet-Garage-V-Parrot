@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Garage.V.Parrot !{% endblock %}
+
+{% block body %}
+<div class="loginFormContainer">
+    <span id="CloseLoginForm" class="fas fa-times"></span>
+    <form action="index.php" method="post">
+        <h3>User Login</h3>
+        <input type="text" name="pseudo" required placeholder="Pseudo" class="box">
+        <input type="email" name="email" required placeholder="E.mail" class="box">
+        <input type="password" name="password" required placeholder="Password" class="box">
+        <p>Mot de passe oublier <a href="#">Click Here</a></p>
+        <button class="btn">Se connecter</button>
+        <div class="buttons">
+            <a href="#" class="btn">Inscription</a>
+        </div>
+    </form>
+</div>
+<!--Home Section Start-->
+<section id="Home" class="home">
+    <h3 data-speed="-2" class="homeParalexEffect"><span>G</span>.ParroT</h3>
+    <img data-speed="5" class="homeParalexEffect" src="{{ asset('images/Présentation3.jpg') }}" alt="">
+</section>
+<!--Home Section End-->
+
+<!-- Icons Container Start-->
+  <section class="iconsContainer">
+    <div class="icons">
+        <i class="fas fa-home"></i>
+        <div class="content">
+            <h3>100+</h3>
+            <p>Branches</p>
+        </div>
+    </div>
+
+    <div class="icons">
+        <i class="fas fa-home"></i>
+        <div class="content">
+            <h3>5800+</h3>
+            <p>Voitures Vendues</p>
+        </div>
+    </div>
+
+    <div class="icons">
+        <i class="fas fa-home"></i>
+        <div class="content">
+            <h3>2560+</h3>
+            <p>Clients Satisfaits</p>
+        </div>
+    </div>
+
+    <div class="icons">
+        <i class="fas fa-home"></i>
+        <div class="content">
+            <h3>100+</h3>
+            <p>Nouveautés</p>
+        </div>
+    </div>
+  </section>
+
+{% endblock %}
