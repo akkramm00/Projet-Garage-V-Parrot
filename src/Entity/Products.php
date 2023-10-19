@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ProductsRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ProductsRepository::class)]
 class Products
@@ -11,28 +12,43 @@ class Products
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    private ?int $id;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank()]
+    #[Assert\Length(min: 2, max: 50)]
     private ?string $Marque = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $Model = null;
+    #[Assert\NotBlank()]
+    #[Assert\Length(min: 2, max: 50)]
+    private ?string $Model;
 
     #[ORM\Column]
-    private ?float $Prix = null;
+    #[Assert\NotNull()]
+    #[Assert\Positive()]
+    private ?float $Prix;
 
     #[ORM\Column(length: 50, nullable: true)]
+    #[Assert\Length(min: 2, max: 50)]
     private ?string $Boite = null;
 
     #[ORM\Column(length: 50, nullable: true)]
+    #[Assert\Length(min: 2, max: 50)]
     private ?string $Energie = null;
 
     #[ORM\Column(length: 50, nullable: true)]
+    #[Assert\Length(min: 2, max: 50)]
     private ?string $Puissance = null;
 
-    #[ORM\Column]
-    private ?\DateTimeImmutable $createdAt = null;
+    #[ORM\Column(type: 'datetime_immutable')]
+    #[Assert\NotNull()]
+    private ?\DateTimeImmutable $createdAt;
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {
