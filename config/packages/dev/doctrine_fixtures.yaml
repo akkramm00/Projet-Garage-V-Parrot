@@ -1,0 +1,2 @@
+doctrine_fixtures:
+  auto_generate: true

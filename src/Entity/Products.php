@@ -27,7 +27,7 @@ class Products
     #[ORM\Column]
     #[Assert\NotNull()]
     #[Assert\Positive()]
-    private ?float $Prix;
+    private ?int $Prix;
 
     #[ORM\Column(length: 50, nullable: true)]
     #[Assert\Length(min: 2, max: 50)]
