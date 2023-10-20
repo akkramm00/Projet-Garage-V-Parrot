@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} garageVP - Nos produits{% endblock %}
+
+{% block body %}
+    
+<style>
+    body {
+        margin-top: 15rem;
+    }
+
+    .txt-w {
+        text-decoration: none;
+        color: white;
+    }
+    .table{
+        box-shadow:var(--box_shadow);
+    }
+    .navigation{
+        text-shadow:var(--main);
+        text-color:var(--main);
+    }
+
+</style>
+
+<body>
+    <div class="container">
+        <div class="row d-flex justify-content-center align-items-center my-4">
+            <div class="Produits col-12 d-flex justify-content-center align-items-center text-center">
+                <h1>NOS PRODUITS</h1>
+            </div>
+
+            <div class="col-10 count mt-4 text-danger">
+                <h2>Il y'a {{ products.getTotalItemCount}} produits .</h2>
+            </div>
+
+
+            <div class="col-10 d-flex justify-content-center align-items-center ">
+                <table class="table table-primary table-striped  fs-5 table-hover my-5">
+                    <thead class="py-5 fs-3 text-danger">
+                        <tr>
+                            <th>Numéro</th>
+                            <th>Marque</th>
+                            <th>Model</th>
+                            <th>Prix</th>
+                            <th>Boite</th>
+                            <th>Energie</th>
+                            <th>Puissance</th>
+                            <th>Date de Création</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for products in products %}
+                           <tr>
+                                <th  class="d-flex justify-content-center align-items-center fs-5 text-danger">{{ products.id }}</th>
+                                <th>{{ products.marque }}</th>
+                                <td>{{ products.model }}</td>
+                                <td>{{ products.prix }}</td>
+                                <td>{{ products.boite }}</td>
+                                <td>{{ products.energie }}</td>
+                                <td>{{ products.puissance }}</td>
+                                <td>{{ products.createdAt|date('d/m/Y') }}</td>
+                           </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="navigation col-10 d-flex justify-content-center align-items-center fs-3 mb-4">
+                {{ knp_pagination_render(products) }}
+            </div>
+        </div>
+    </div>
+</body>
+
+{% endblock %}
