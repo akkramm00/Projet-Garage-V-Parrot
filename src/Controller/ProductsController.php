@@ -11,7 +11,15 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProductsController extends AbstractController
 {
-    #[Route('/products', name: 'products')]
+    /**
+     * This function dispaly all products
+     *
+     * @param ProductsRepository $repository
+     * @param PaginatorInterface $paginator
+     * @param Request $request
+     * @return Response
+     */
+    #[Route('/products', name: 'products', methods: ['GET'])]
     public function index(ProductsRepository $repository, PaginatorInterface $paginator, Request $request): Response
     {
         $products = $paginator->paginate(
