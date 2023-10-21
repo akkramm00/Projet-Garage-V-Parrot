@@ -1,3 +1,8 @@
 controllers:
     resource: ../src/Controller/
     type: attribute
+
+
+products_edit:
+    path: '/products/{id}/edit'
+    controller: 'App\Controller\ProductsController::edit'
