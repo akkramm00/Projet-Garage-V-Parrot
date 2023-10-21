@@ -37,7 +37,7 @@ class ProductsType extends AbstractType
                     'minlength' => '2',
                     'maxlength' => '50'
                 ],
-                'label' => 'Marque',
+                'label' => 'Model',
                 'label_attr' => [
                     'class' => 'form-label mt-4'
                 ],

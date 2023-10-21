@@ -51,6 +51,13 @@ class ProductsController extends AbstractController
 
             $manager->persist($products);
             $manager->flush();
+
+            $this->addFlash(
+                'success',
+                'Votre produit a été créé avec succès !'
+            );
+
+            return $this->redirectToRoute('products');
         }
 
         return $this->render('pages/products/new.html.twig', [

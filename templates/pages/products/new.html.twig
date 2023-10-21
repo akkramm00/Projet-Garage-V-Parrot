@@ -1,14 +1,99 @@
 {% extends "base.html.twig" %}
 
+
+
 {% block body %}
-    <div class="container mt-4">
-        <div class="row my-5">
-            <div class="col-12">
+
+<style>
+  .bg {
+        background: var(--main);
+        padding: 2rem;
+        box-shadow: var(--box_shadow);
+        border-radius: 1rem;
+    }
+
+      .bg:hover {
+        background: #000;
+        color:white;
+    }
+
+</style>
+
+
+    <div class="container my-5">
+        <div class="row  d-flex justify-content-center align-items-center my-5">
+        <div class="col-sm-12 col-md-10 my-5">
+
+            <div class="row my-5">
             </div>
-            <div class="col-12 my-5">
-               <h1 class="mt-4">Création d'un nouveau Produit</h1>
-               {{ form(form) }}
+            <div class="row bg my-5">
+               <h1 class="mt-4 text-center">Création d'un nouveau Produit</h1>
+
+               {# read and display just one flash message type #}
+               {% for message in app.flashes('success') %}
+               <div class="alert alert-success mt-4">
+                {{ message}}
+               </div>
+               {% endfor %}
+
+
+            {{ form_start(form) }}
+
+            <div class="form-group fs-4">       
+                {{ form_label(form.Marque) }}
+                {{ form_widget(form.Marque) }}
+                <div class="form-error">
+                    {{ form_errors(form.Marque)}}
+                </div>
             </div>
+
+            <div class="form-group fs-4">    
+                {{ form_label(form.Model) }}
+                {{ form_widget(form.Model) }}
+                <div class="form-error">
+                    {{ form_errors(form.Model)}}
+                </div
+            </div>
+
+            <div class="form-group fs-4">    
+                {{ form_label(form.Prix) }}
+                {{ form_widget(form.Prix) }}
+                <div class="form-error">
+                    {{ form_errors(form.Prix)}}
+                </div>
+            </div>
+
+            <div class="form-group fs-4">    
+                {{ form_label(form.Boite) }}
+                {{ form_widget(form.Boite) }}
+                <div class="form-error">
+                    {{ form_errors(form.Boite)}}
+                </div>
+            </div>
+
+            <div class="form-group fs-4">    
+                {{ form_label(form.Energie) }}
+                {{ form_widget(form.Energie) }}
+                <div class="form-error">
+                    {{ form_errors(form.Energie)}}
+                </div>
+            </div>
+
+            <div class="form-group fs-4">    
+                {{ form_label(form.Puissance) }}
+                {{ form_widget(form.Puissance) }}
+                <div class="form-error">
+                    {{ form_errors(form.Puissance)}}
+                </div>
+            </div>
+
+            <div class="form-group fs-4">    
+                {{ form_row(form.submit) }}
+            </div>
+            {{ form_end(form)}}
+            </div>
+
+        </div>
         </div>
     </div>
 {% endblock %}
