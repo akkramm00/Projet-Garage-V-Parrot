@@ -2,7 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Products;
+use App\Form\ProductsType;
 use App\Repository\ProductsRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -30,6 +33,28 @@ class ProductsController extends AbstractController
 
         return $this->render('pages/products/index.html.twig', [
             'products' => $products
+        ]);
+    }
+    /************************************************************************* */
+
+    #[Route('/products/nouveau', name: 'products.new', methods: ['GET', 'POST'])]
+    public function new(
+        Request $request,
+        EntityManagerInterface $manager
+    ): Response {
+        $products = new Products();
+        $form = $this->createForm(ProductsType::class, $products);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $products = $form->getData();
+
+            $manager->persist($products);
+            $manager->flush();
+        }
+
+        return $this->render('pages/products/new.html.twig', [
+            'form' => $form->createView()
         ]);
     }
 }
