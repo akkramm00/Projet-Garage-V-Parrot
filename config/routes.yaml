@@ -6,3 +6,9 @@ controllers:
 products_edit:
     path: '/products/{id}/edit'
     controller: 'App\Controller\ProductsController::edit'
+
+
+
+products_delete:
+    path: '/products/{id}/delete/'
+    controller: 'App\Controller\ProductsController::delete'

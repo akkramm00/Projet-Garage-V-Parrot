@@ -20,6 +20,14 @@
         text-shadow:var(--main);
         text-color:var(--main);
     }
+    .btn-info{
+        padding: 0.1rem;
+        background: blue;
+    }
+    .btn-warning{
+        padding: 0.1rem;
+        background: yellow;
+    }
 
 </style>
 
@@ -41,7 +49,7 @@
             </div>
 
 
-            <div class="col-10 d-flex justify-content-center align-items-center ">
+            <div class="col-10 d-flex justify-content-center align-items-center text-center ">
                 <table class="table table-primary table-striped  fs-5 table-hover my-5">
                     <thead class="py-5 fs-3 text-danger">
                         <tr>
@@ -53,6 +61,8 @@
                             <th>Energie</th>
                             <th>Puissance</th>
                             <th>Date de Création</th>
+                            <th>Edition</th>
+                            <th>Suppression</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -66,6 +76,13 @@
                                 <td>{{ products.energie }}</td>
                                 <td>{{ products.puissance }}</td>
                                 <td>{{ products.createdAt|date('d/m/Y') }}</td>
+                                <td>
+                                    <a href="{{ path('products.edit', { id:products.id }) }}" class="btn btn-info">Modifier</a>
+                                </td>
+                                <td>
+                                    <a href="{{ path('products.delete', { id:products.id }) }}" class="btn btn-warning">supprimer</a>
+                                </td>
+                                
                            </tr>
                         {% endfor %}
                     </tbody>

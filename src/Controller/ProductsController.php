@@ -22,6 +22,8 @@ class ProductsController extends AbstractController
      * @param Request $request
      * @return Response
      */
+
+
     #[Route('/products', name: 'products', methods: ['GET'])]
     public function index(
         ProductsRepository $repository,
@@ -41,7 +43,7 @@ class ProductsController extends AbstractController
     /************************************************************************* */
 
     /**
-     * This controller allow us to create news produts
+     * This controller allow us to create news products
      *
      * @param Request $request
      * @param EntityManagerInterface $manager
@@ -75,7 +77,7 @@ class ProductsController extends AbstractController
             'form' => $form->createView()
         ]);
     }
-    /*************************************************************************** */
+    /*****************************************************************************/
 
     #[Route('/products/edition/{id}', 'products.edit', methods: ['GET', 'POST'])]
     public function edit(
@@ -105,5 +107,32 @@ class ProductsController extends AbstractController
         return $this->render('pages/products/edit.html.twig', [
             'form' => $form->createView()
         ]);
+    }
+
+
+    /*************************************************************************** */
+
+    #[Route('/products/suppression/{id}', 'products.delete', methods: ['GET'])]
+    public function delete(
+        EntityManagerInterface $manager,
+        Products $products
+    ): Response {
+        if (!$products) {
+            $this->addflash(
+                'warning',
+                'Le produit en question n\'a pas été trouvé !'
+            );
+
+            return $this->redirectToRoute('products');
+        }
+        $manager->remove($products);
+        $manager->flush();
+
+        $this->addflash(
+            'success',
+            'Le produits a été supprimé avec succès !'
+        );
+
+        return $this->redirectToRoute('products');
     }
 }
