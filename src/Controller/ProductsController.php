@@ -79,6 +79,15 @@ class ProductsController extends AbstractController
     }
     /*****************************************************************************/
 
+    /**
+     * This controller allow us to edit our products .
+     *
+     * @param ProductsRepository $repository
+     * @param Request $request
+     * @param EntityManagerInterface $manager
+     * @param [type] $id
+     * @return Response
+     */
     #[Route('/products/edition/{id}', 'products.edit', methods: ['GET', 'POST'])]
     public function edit(
         ProductsRepository $repository,
@@ -112,6 +121,13 @@ class ProductsController extends AbstractController
 
     /*************************************************************************** */
 
+    /**
+     * This controller allow us to delete our products .
+     *
+     * @param EntityManagerInterface $manager
+     * @param Products $products
+     * @return Response
+     */
     #[Route('/products/suppression/{id}', 'products.delete', methods: ['GET'])]
     public function delete(
         EntityManagerInterface $manager,

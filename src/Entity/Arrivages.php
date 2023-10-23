@@ -2,53 +2,69 @@
 
 namespace App\Entity;
 
-use App\Repository\ProductsRepository;
+use App\Repository\ArrivagesRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-#[ORM\Entity(repositoryClass: ProductsRepository::class)]
-
-class Products
+#[ORM\HasLifecycleCallbacks]
+#[ORM\Entity(repositoryClass: ArrivagesRepository::class)]
+class Arrivages
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 50)]
     #[Assert\NotBlank()]
     #[Assert\Length(min: 2, max: 50)]
-    private ?string $Marque = null;
+    private ?string $Marque;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 50)]
     #[Assert\NotBlank()]
     #[Assert\Length(min: 2, max: 50)]
     private ?string $Model;
 
-    #[ORM\Column]
-    #[Assert\NotNull()]
-    #[Assert\Positive()]
-    private ?int $Prix;
+    #[ORM\Column(length: 255)]
+    #[Assert\NotBlank()]
+    private ?string $property;
 
-    #[ORM\Column(length: 50, nullable: true)]
+    #[ORM\Column(length: 50)]
+    #[Assert\NotBlank()]
     #[Assert\Length(min: 2, max: 50)]
     private ?string $Boite = null;
 
-    #[ORM\Column(length: 50, nullable: true)]
+    #[ORM\Column(length: 50)]
+    #[Assert\NotBlank()]
     #[Assert\Length(min: 2, max: 50)]
-    private ?string $Energie = null;
+    private ?string $Energie;
 
-    #[ORM\Column(length: 50, nullable: true)]
+    #[ORM\Column(length: 50)]
+    #[Assert\NotBlank()]
     #[Assert\Length(min: 2, max: 50)]
     private ?string $Puissance = null;
 
-    #[ORM\Column(type: 'datetime_immutable')]
+    #[ORM\Column(type: 'boolean')]
+    private ?bool $isAvaillable = null;
+
+    #[ORM\Column]
     #[Assert\NotNull()]
-    private ?\DateTimeImmutable $createdAt;
+    private ?\DateTimeImmutable $createdAt = null;
+
+    #[ORM\Column]
+    #[Assert\NotNull()]
+    private ?\DateTimeImmutable $updatedAt = null;
 
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
+        $this->updatedAt = new \DateTimeImmutable();
+    }
+
+    #[ORM\PrePersist]
+    public function setUpdatedAtValue()
+    {
+        $this->updatedAt = new \DateTimeImmutable();
     }
 
     public function getId(): ?int
@@ -80,14 +96,14 @@ class Products
         return $this;
     }
 
-    public function getPrix(): ?float
+    public function getProperty(): ?string
     {
-        return $this->Prix;
+        return $this->property;
     }
 
-    public function setPrix(float $Prix): static
+    public function setProperty(string $property): static
     {
-        $this->Prix = $Prix;
+        $this->property = $property;
 
         return $this;
     }
@@ -97,7 +113,7 @@ class Products
         return $this->Boite;
     }
 
-    public function setBoite(?string $Boite): static
+    public function setBoite(string $Boite): static
     {
         $this->Boite = $Boite;
 
@@ -109,7 +125,7 @@ class Products
         return $this->Energie;
     }
 
-    public function setEnergie(?string $Energie): static
+    public function setEnergie(string $Energie): static
     {
         $this->Energie = $Energie;
 
@@ -121,9 +137,21 @@ class Products
         return $this->Puissance;
     }
 
-    public function setPuissance(?string $Puissance): static
+    public function setPuissance(string $Puissance): static
     {
         $this->Puissance = $Puissance;
+
+        return $this;
+    }
+
+    public function isIsAvaillable(): ?bool
+    {
+        return $this->isAvaillable;
+    }
+
+    public function setIsAvaillable(bool $isAvaillable): static
+    {
+        $this->isAvaillable = $isAvaillable;
 
         return $this;
     }
@@ -136,6 +164,18 @@ class Products
     public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeImmutable $updatedAt): static
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }

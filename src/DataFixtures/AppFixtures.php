@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Arrivages;
 use Faker\Factory;
 use Faker\Generator;
 use App\Entity\Products;
@@ -23,6 +24,8 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
+
+        // Products
         $puissanceOptions = [100, 150, 200, 250];
         $marqueOptions = ['Mercedes', 'Audi', 'wolkzvagen', 'BMW'];
         $energieOptions = ['Diesel', 'Essence', 'Electric'];
@@ -38,6 +41,26 @@ class AppFixtures extends Fixture
 
             $manager->persist($products);
         }
+
+        //Arrivages
+        $puissanceOptions = [100, 150, 200, 250];
+        $marqueOptions = ['Mercedes', 'Audi', 'wolkzvagen', 'BMW'];
+        $energieOptions = ['Diesel', 'Essence', 'Electric'];
+
+        for ($j = 0; $j < 20; $j++) {
+
+            $arrivages = new Arrivages();
+            $arrivages->setMarque($marqueOptions[array_rand($marqueOptions)])
+                ->setModel($this->faker->word())
+                ->setProperty($this->faker->text(300))
+                ->setBoite((rand(0, 1) ? 'mecanique' : 'Automatique'))
+                ->setEnergie($energieOptions[array_rand($energieOptions)])
+                ->setPuissance($puissanceOptions[array_rand($puissanceOptions)])
+                ->setIsAvaillable(mt_rand(0, 1) == 1 ? true : false);
+
+            $manager->persist($arrivages);
+        }
+
         $manager->flush();
     }
 }
