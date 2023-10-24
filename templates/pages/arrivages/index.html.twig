@@ -1,0 +1,105 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} garageVP - Nos Arrivages{% endblock %}
+
+{% block body %}
+    
+<style>
+    body {
+        margin-top: 15rem;
+    }
+
+    .txt-w {
+        text-decoration: none;
+        color: white;
+    }
+    .table{
+        box-shadow:var(--box_shadow);
+    }
+    .navigation{
+        text-shadow:var(--main);
+        text-color:var(--main);
+    }
+    .btn-info{
+        padding: 0.1rem;
+        background: blue;
+    }
+    .btn-warning{
+        padding: 0.1rem;
+        background: yellow;
+    }
+
+</style>
+
+<body>
+    <div class="container">
+        <div class="row d-flex justify-content-center align-items-center my-4">
+            <div class="Produits col-12 d-flex justify-content-center align-items-center text-center">
+                <h1>Nos Arrivages !</h1>
+            </div>
+          
+                {# read and display just one flash message type #}
+               {% for message in app.flashes('success') %}
+               <div class="alert alert-success mt-4">
+                {{ message}}
+               </div>
+               {% endfor %}
+            <div class="col-10 count mt-4 text-danger">
+                <h2>Il y'a {{ arrivages.getTotalItemCount}} arrivages au total.</h2>
+            </div>
+
+
+            <div class="col-10 d-flex justify-content-center align-items-center text-center ">
+                <table class="table table-primary table-striped  fs-5 table-hover my-5">
+                    <thead class="py-5 fs-3 text-danger">
+                        <tr>
+                            <th>Numéro</th>
+                            <th>Marque</th>
+                            <th>Model</th>
+                            <th>Boite</th>
+                            <th>Energie</th>
+                            <th>Puissance</th>
+                            <th>Date de Création</th>
+                            <th>Date de Mise à jour</th>
+                            <th>Edition</th>
+                            <th>Suppression</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for arrivages in arrivages %}
+                           <tr>
+                                <th  class="d-flex justify-content-center align-items-center fs-5 text-danger">{{ arrivages.id }}</th>
+                                <th>{{ arrivages.marque }}</th>
+                                <td>{{ arrivages.model }}</td>
+                                <td>{{ arrivages.boite }}</td>
+                                <td>{{ arrivages.energie }}</td>
+                                <td>{{ arrivages.puissance }}</td>
+                                <td>{{ arrivages.createdAt|date('d/m/Y') }}</td>
+                                <td>{{ arrivages.updatedAt|date('d/m/Y') }}</td>
+                                <td>
+                                    <a href="">Modifier</a>
+                                </td>
+                                <td>
+                                    <a href="">supprimer</a>
+                                </td>
+                                
+                           </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+              {# <div class="Produits col-10">
+                  <a href="{{ path('arrivages.new') }}" class="btn btn-primary">
+                    Créer un nouveau Produit !
+                </a>
+            </div> #}
+
+            <div class="navigation col-10 d-flex justify-content-center align-items-center fs-3 mb-4">
+                {{ knp_pagination_render(arrivages) }}
+            </div>
+        </div>
+    </div>
+</body>
+
+{% endblock %}
