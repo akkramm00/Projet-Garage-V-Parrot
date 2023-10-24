@@ -120,19 +120,24 @@ class ProductsController extends AbstractController
 
 
     /*************************************************************************** */
-
     /**
-     * This controller allow us to delete our products .
+     * This Controller allow us to delete Products .
      *
      * @param EntityManagerInterface $manager
+     * @param ProductsRepository $repository
      * @param Products $products
+     * @param [type] $id
      * @return Response
      */
+
     #[Route('/products/suppression/{id}', 'products.delete', methods: ['GET'])]
     public function delete(
         EntityManagerInterface $manager,
-        Products $products
+        ProductsRepository $repository,
+        Products $products,
+        $id
     ): Response {
+        $products = $repository->findOneBy(["id" => $id]);
         if (!$products) {
             $this->addflash(
                 'warning',

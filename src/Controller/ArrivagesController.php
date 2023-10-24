@@ -75,4 +75,82 @@ class ArrivagesController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
+    /****************************************************************************** */
+
+    /**
+     * This controller allow us to edit our arrivages .
+     *
+     * @param ArrivagesRepository $repository
+     * @param Request $request
+     * @param EntityManagerInterface $manager
+     * @param [type] $id
+     * @return Response
+     */
+    #[Route('/arrivages/edit/{id}', 'arrivages.edit', methods: ['GET', 'POST'])]
+    public function edit(
+        ArrivagesRepository $repository,
+        Request $request,
+        EntityManagerInterface $manager,
+        $id
+    ): Response {
+        $arrivages = $repository->findOneBy(["id" => $id]);
+        $form = $this->createForm(ArrivagesType::class, $arrivages);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $arrivages = $form->getData();
+
+            $manager->persist($arrivages);
+            $manager->flush();
+
+            $this->addFlash(
+                'success',
+                'Votre Arrivage a été modifié avec succès !'
+            );
+
+            return $this->redirectToRoute('arrivages.index');
+        }
+        return $this->render('pages/arrivages/edit.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    /********************************************************************************* */
+
+    /**
+     * This Controller allow us to delete arrival .
+     *
+     * @param EntityManagerInterface $manager
+     * @param ArrivagesRepository $repository
+     * @param Arrivages $arrivages
+     * @param [type] $id
+     * @return Response
+     */
+    #[Route('/arrivages/suppression/{id}', 'arrivages.delete', methods: (['GET']))]
+    public function delete(
+        EntityManagerInterface $manager,
+        ArrivagesRepository $repository,
+        Arrivages $arrivages,
+        $id
+    ): Response {
+        $arrivages = $repository->findOneBy(["id" => $id]);
+        if (!$arrivages) {
+            $this->addflash(
+                'warning',
+                'L\'arrivage en question n\'a pas été trouvé !'
+            );
+
+            return $this->redirectToRoute('arrivages.index');
+        }
+        $manager->remove($arrivages);
+        $manager->flush();
+
+        $this->addflash(
+            'success',
+            'L\'arrivage a été supprimé avec succès !'
+        );
+
+        return $this->redirectToRoute('arrivages.index');
+    }
 }

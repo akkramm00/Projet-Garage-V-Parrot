@@ -79,10 +79,10 @@
                                 <td>{{ arrivages.createdAt|date('d/m/Y') }}</td>
                                 <td>{{ arrivages.updatedAt|date('d/m/Y') }}</td>
                                 <td>
-                                    <a href="">Modifier</a>
+                                    <a href="{{ path('arrivages.edit', { id:arrivages.id }) }}">Modifier</a>
                                 </td>
                                 <td>
-                                    <a href="">supprimer</a>
+                                    <a href="{{ path('arrivages.delete', { id:arrivages.id }) }}">supprimer</a>
                                 </td>
                                 
                            </tr>

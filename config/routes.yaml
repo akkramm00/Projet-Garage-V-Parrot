@@ -4,11 +4,23 @@ controllers:
 
 
 products_edit:
-    path: '/products/{id}/edit'
+    path: '/products/edit/{id}'
     controller: 'App\Controller\ProductsController::edit'
 
 
 
 products_delete:
-    path: '/products/{id}/delete/'
+    path: '/products/suppression/{id}'
     controller: 'App\Controller\ProductsController::delete'
+
+
+
+arrivages_edit:
+    path: '/arrivages/edit/{id}'
+    controller: 'App\Controller\ArrivagesController::edit'
+
+
+
+arrivage_delete:
+    path: '/arrivages/suppression/{id}'
+    controller: 'App\Controller\ArrivagesController::delete'
