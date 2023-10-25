@@ -5,9 +5,6 @@
 {% block body %}
     
 <style>
-    body {
-        margin-top: 15rem;
-    }
 
     .txt-w {
         text-decoration: none;
@@ -28,14 +25,28 @@
         padding: 0.1rem;
         background: yellow;
     }
-
+    .banner{
+        height:800px;
+        background:linear-gradient(rgba(0, 0, 0,.1),rgba(0, 0, 0,.1)),url(https://images.alphacoders.com/717/thumbbig-717700.webp) center center fixed no-repeat;
+        background-size:cover;
+    }
+    .Arrivages{
+        text-shadow: 1rem 1rem 1rem black;  
+    }
+    .Empty{
+        heigth: 3rem;
+    }
 </style>
 
 <body>
+ <div class="container-fluid banner py-5">
     <div class="container">
-        <div class="row d-flex justify-content-center align-items-center my-4">
-            <div class="Produits col-12 d-flex justify-content-center align-items-center text-center">
-                <h1>Nos Arrivages !</h1>
+        <div class="row d-flex justify-content-center align-items-center mb-4">
+             <div class="Empty col-12 d-flex justify-content-center align-items-center text-white text-center pt-5 my-5">
+               
+            </div>
+            <div class="Arrivages col-12 d-flex justify-content-center align-items-center text-white text-center pt-5">
+                <h1>NOS ARRIVAGES !</h1>
             </div>
           
                 {# read and display just one flash message type #}
@@ -101,6 +112,7 @@
                 {{ knp_pagination_render(arrivages) }}
             </div>
         </div>
+    </div>
     </div>
 </body>
 

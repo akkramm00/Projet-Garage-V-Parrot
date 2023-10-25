@@ -12,14 +12,20 @@
         border-radius: 1rem;
     }
 
-      .bg:hover {
+    .bg:hover {
         background: #000;
         color:white;
+    }
+    .banner{
+        height:850px;
+        background:linear-gradient(rgba(0, 0, 0,.1),rgba(0, 0, 0,.1)),url(https://images.alphacoders.com/717/thumbbig-717700.webp) center center fixed no-repeat;
+        background-size:cover;
     }
 
 </style>
 
-
+<body>
+ <div class="container-fluid banner py-5">
     <div class="container my-5">
         <div class="row  d-flex justify-content-center align-items-center my-5">
         <div class="col-sm-12 col-md-10 my-5">
@@ -106,4 +112,7 @@
         </div>
         </div>
     </div>
+    </div>
+</body>
+
 {% endblock %}

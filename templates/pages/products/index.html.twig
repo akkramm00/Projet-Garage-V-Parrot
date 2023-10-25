@@ -5,9 +5,6 @@
 {% block body %}
     
 <style>
-    body {
-        margin-top: 15rem;
-    }
 
     .txt-w {
         text-decoration: none;
@@ -28,13 +25,28 @@
         padding: 0.1rem;
         background: yellow;
     }
+    .banner{
+        height:800px;
+        background:linear-gradient(rgba(0, 0, 0,.1),rgba(0, 0, 0,.1)),url(https://images.alphacoders.com/717/thumbbig-717700.webp) center center fixed no-repeat;
+        background-size:cover;
+    }
+    .Produits{
+        text-shadow: 1rem 1rem 1rem black;
+    }
+    .Empty{
+        heigth: 3rem;
+    }
 
 </style>
 
 <body>
+    <div class="container-fluid banner py-5">
     <div class="container">
-        <div class="row d-flex justify-content-center align-items-center my-4">
-            <div class="Produits col-12 d-flex justify-content-center align-items-center text-center">
+        <div class="row d-flex justify-content-center align-items-center mb-4">
+            <div class="Empty col-12 d-flex justify-content-center align-items-center text-white text-center pt-5 my-5">
+               
+            </div>
+            <div class="Produits col-12 d-flex justify-content-center align-items-center text-white text-center pt-5">
                 <h1>NOS PRODUITS</h1>
             </div>
           
@@ -44,7 +56,7 @@
                 {{ message}}
                </div>
                {% endfor %}
-            <div class="col-10 count mt-4 text-danger">
+            <div class="col-10 count mt-4 text-white">
                 <h2>Il y'a {{ products.getTotalItemCount}} produits au total.</h2>
             </div>
 
@@ -77,10 +89,10 @@
                                 <td>{{ products.puissance }}</td>
                                 <td>{{ products.createdAt|date('d/m/Y') }}</td>
                                 <td>
-                                    <a href="{{ path('products.edit', { id:products.id }) }}" class="btn btn-info">Modifier</a>
+                                    <a href="{{ path('products.edit', { id:products.id }) }}">Modifier</a>
                                 </td>
                                 <td>
-                                    <a href="{{ path('products.delete', { id:products.id }) }}" class="btn btn-warning">supprimer</a>
+                                    <a href="{{ path('products.delete', { id:products.id }) }}">supprimer</a>
                                 </td>
                                 
                            </tr>
@@ -91,14 +103,15 @@
             </div>
             <div class="Produits col-10">
                   <a href="{{ path('products.new') }}" class="btn btn-primary">
-                    Créer un nouveau Produit !
+                    Nouveau Produit !
                 </a>
             </div>
 
-            <div class="navigation col-10 d-flex justify-content-center align-items-center fs-3 mb-4">
+            <div class="navigation col-10 d-flex justify-content-center align-items-center fs-3 mb-4 pb-5">
                 {{ knp_pagination_render(products) }}
             </div>
         </div>
+    </div>
     </div>
 </body>
 
