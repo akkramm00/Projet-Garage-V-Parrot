@@ -11,6 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 #[UniqueEntity('email')]
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[ORM\EntityListeners(['App\EntityListener\UserListener'])]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -121,12 +122,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getPlainPasswor()
+    public function getPlainPassword()
     {
         return $this->plainPassword;
     }
 
-    public function SetPlainPassowrd($plainPassword)
+    public function SetPlainPassword($plainPassword)
     {
         $this->plainPassword = $plainPassword;
     }
