@@ -43,13 +43,19 @@
                 </div>
                 {% endif %}
 
+                {% for message in app.flashes('success') %}
+                <div class="alert alert-success mt-4 text-center">
+                    {{ message}}
+                </div>
+                {% endfor %}
+
                 <form action="{{ path('security.login') }}" method="post">
                     <h3>User Login</h3>
                     <input type="email" name="_username" required placeholder="exemple@GarageV.fr" class="box" value="{{ last_username }}">
                     <input type="password" name="_password" required placeholder="********" class="box">
                     <button type="submit" class="btn">Se Connecter</button>
                     <div class="buttons">
-                        <a href="#" class="btn">Inscription</a>
+                        <a href="#" class="btn">S'Inscrire</a>
                     </div>
                 </form>
             </div>
