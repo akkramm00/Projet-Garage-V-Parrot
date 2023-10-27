@@ -24,3 +24,8 @@ arrivages_edit:
 arrivage_delete:
     path: '/arrivages/suppression/{id}'
     controller: 'App\Controller\ArrivagesController::delete'
+
+
+user_edit:
+    path: '/utilisateur/edition/{id}'
+    controller: 'App\Controller\UserController::edit'
