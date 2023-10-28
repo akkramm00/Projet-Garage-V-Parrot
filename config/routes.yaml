@@ -29,3 +29,9 @@ arrivage_delete:
 user_edit:
     path: '/utilisateur/edition/{id}'
     controller: 'App\Controller\UserController::edit'
+
+
+# config/routes.yaml
+user.edit.password:
+    path: '/utilisateur/edition-mot-de-passe/{id}'
+    controller: 'App\Controller\UserController::editPassword'
