@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} garageVP - Nos produits{% endblock %}
+{% block title %} garageVP - Les Utilsateurs{% endblock %}
 
 {% block body %}
     
@@ -30,12 +30,13 @@
         background:linear-gradient(rgba(0, 0, 0,.1),rgba(0, 0, 0,.1)),url(https://images.alphacoders.com/717/thumbbig-717700.webp) center center fixed no-repeat;
         background-size:cover;
     }
-    .Produits{
+    .user{
         text-shadow: 1rem 1rem 1rem black;
     }
     .Empty{
         heigth: 3rem;
     }
+
 
 </style>
 
@@ -46,8 +47,8 @@
             <div class="Empty col-12 d-flex justify-content-center align-items-center text-white text-center pt-5 my-5">
                
             </div>
-            <div class="Produits col-12 d-flex justify-content-center align-items-center text-white text-center pt-5">
-                <h1>NOS PRODUITS</h1>
+            <div class="user col-12 d-flex justify-content-center align-items-center text-white text-center pt-5">
+                <h1>LISTE.UTILISATEURS</h1>
             </div>
           
                 {# read and display just one flash message type #}
@@ -57,7 +58,7 @@
                </div>
                {% endfor %}
             <div class="col-10 count mt-4 text-white">
-                <h2>Il y'a {{ products.getTotalItemCount}} produits au total.</h2>
+                <h2>Il y'a {{ user.getTotalItemCount}} utilisateurs au total.</h2>
             </div>
 
 
@@ -66,49 +67,34 @@
                     <thead class="py-5 fs-3 text-danger">
                         <tr>
                             <th>Numéro</th>
-                            <th>Marque</th>
-                            <th>Model</th>
-                            <th>Prix</th>
-                            <th>Boite</th>
-                            <th>Energie</th>
-                            <th>Puissance</th>
-                            <th>Date de Création</th>
-                            <th>Edition</th>
-                            <th>Suppression</th>
+                            <th>Pseudo</th>
+                            <th>E.mail</th>
+                            <th>Date de création</th>
+                            <th>Action</th>
+
                         </tr>
                     </thead>
                     <tbody>
-                        {% for products in products %}
+                        {% for user in user %}
                            <tr>
-                                <th  class="d-flex justify-content-center align-items-center fs-5 text-danger">{{ products.id }}</th>
-                                <th>{{ products.marque }}</th>
-                                <td>{{ products.model }}</td>
-                                <td>{{ products.prix }}</td>
-                                <td>{{ products.boite }}</td>
-                                <td>{{ products.energie }}</td>
-                                <td>{{ products.puissance }}</td>
-                                <td>{{ products.createdAt|date('d/m/Y') }}</td>
+                                <th  class="d-flex justify-content-center align-items-center fs-5 text-danger">{{ user.id }}</th>
+                                <td>{{ user.pseudo }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>{{ user.createdAt|date('d/m/Y') }}</td>
+
+                               
                                 <td>
-                                    <a href="{{ path('products.edit', { id:products.id }) }}">Modifier</a>
+                                    <a href="{{ path('user.edit', { id:user.id }) }}">Modifier</a>
                                 </td>
-                                <td>
-                                    <a href="{{ path('products.delete', { id:products.id }) }}">supprimer</a>
-                                </td>
-                                
+                               
                            </tr>
                         {% endfor %}
                     </tbody>
                 </table>
 
             </div>
-            <div class="Produits col-10">
-                  <a href="{{ path('products.new') }}" class="btn btn-primary">
-                    Nouveau Produit !
-                </a>
-            </div>
-
             <div class="pagination pagination-lg col-10 d-flex justify-content-center align-items-center fs-3 mb-4 pb-5">
-                {{ knp_pagination_render(products) }}
+                {{ knp_pagination_render(user) }}
             </div>
         </div>
     </div>
