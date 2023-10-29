@@ -15,9 +15,16 @@
 </section>
 <!--Home Section End-->
 
+    {% for message in app.flashes('success') %}
+               <div class="alert alert-success text-center fs-4 mt-4">
+                {{ message}}
+               </div>
+    {% endfor %}
 <!-- Icons Container Start-->
   <section class="iconsContainer">
     <div class="icons">
+
+
         <i class="fas fa-home"></i>
         <div class="content">
             <h3>100+</h3>

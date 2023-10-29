@@ -85,7 +85,7 @@ class UserController extends AbstractController
                     'Les informations de votre compte ont bien été modifiées !'
                 );
 
-                return $this->redirectToRoute('products');
+                return $this->redirectToRoute('home.index');
             } else {
                 $this->addFlash(
                     'warning',
