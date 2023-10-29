@@ -70,7 +70,6 @@
                             <th>Pseudo</th>
                             <th>E.mail</th>
                             <th>Date de création</th>
-                            <th>Action</th>
 
                         </tr>
                     </thead>
@@ -82,11 +81,6 @@
                                 <td>{{ user.email }}</td>
                                 <td>{{ user.createdAt|date('d/m/Y') }}</td>
 
-                               
-                                <td>
-                                    <a href="{{ path('user.edit', { id:user.id }) }}">Modifier</a>
-                                </td>
-                               
                            </tr>
                         {% endfor %}
                     </tbody>

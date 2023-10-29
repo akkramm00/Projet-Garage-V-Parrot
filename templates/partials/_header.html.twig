@@ -14,7 +14,8 @@
             <a href="./S'inscrire.php">S'inscrire</a>
             <a href="./dates.php">R.vous</a> -->
         </nav>
-        {% if app.user %}
+       
+        {% if app.user and is_granted('ROLE_ADMIN') %}
         <div class="dropdown mx-4">
             <button class="btn dropdown-toggle m-0" type="button" data-bs-toggle="dropdown" aria-expanded="true">
                 Action
@@ -28,6 +29,7 @@
             </ul>
         </div>
         {% endif %}
+       
 
         {% if app.user %}
         <div class="dropdown">

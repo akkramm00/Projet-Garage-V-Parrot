@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class UserController extends AbstractController
 {
@@ -40,7 +41,7 @@ class UserController extends AbstractController
         ]);
     }
     /*********************************************************************** */
-
+    #[IsGranted('ROLE_USER', statusCode: 403, message: 'Accès refusé. Vous devez être connecté en tant qu\'utilisateur.')]
     #[Route('/utilisateur/edition/{id}', name: 'user.edit', methods: ['GET', 'POST'])]
     /**
      * This controller allow us to edit user's profile
@@ -100,6 +101,7 @@ class UserController extends AbstractController
     }
 
     /************************************************************************************ */
+    #[IsGranted('ROLE_USER', statusCode: 403, message: 'Accès refusé. Vous devez être connecté en tant qu\'utilisateur.')]
     #[Route('/utilisateur/edition-mot-de-passe/{id}', 'user.edit.password', methods: ['GET', 'POST'])]
     public function editPassword(
         UserRepository $repository,
@@ -139,7 +141,7 @@ class UserController extends AbstractController
                     'Le mot de passe a bien été modifié !'
                 );
 
-                return $this->redirectToRoute('products');
+                return $this->redirectToRoute('home.index');
             } else {
                 $this->addFlash(
                     'warning',
