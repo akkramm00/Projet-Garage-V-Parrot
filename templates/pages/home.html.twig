@@ -16,9 +16,15 @@
 <!--Home Section End-->
 
     {% for message in app.flashes('success') %}
-               <div class="alert alert-success text-center fs-4 mt-4">
-                {{ message}}
-               </div>
+        <div class="alert alert-success text-center fs-4 mt-4">
+        {{ message}}
+        </div>
+    {% endfor %}
+
+    {% for message in app.flashes('warning') %}
+        <div class="alert alert-warning  text-center mt-4">
+        {{ message}}
+        </div>
     {% endfor %}
 <!-- Icons Container Start-->
   <section class="iconsContainer">

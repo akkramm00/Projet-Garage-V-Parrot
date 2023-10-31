@@ -32,7 +32,7 @@ class Arrivages
     #[ORM\Column(length: 50)]
     #[Assert\NotBlank()]
     #[Assert\Length(min: 2, max: 50)]
-    private ?string $Boite = null;
+    private ?string $Boite;
 
     #[ORM\Column(length: 50)]
     #[Assert\NotBlank()]
@@ -42,10 +42,10 @@ class Arrivages
     #[ORM\Column(length: 50)]
     #[Assert\NotBlank()]
     #[Assert\Length(min: 2, max: 50)]
-    private ?string $Puissance = null;
+    private ?string $Puissance;
 
     #[ORM\Column(type: 'boolean')]
-    private ?bool $isAvaillable = null;
+    private ?bool $isAvaillable;
 
     #[ORM\Column]
     private ?bool $isPublic;

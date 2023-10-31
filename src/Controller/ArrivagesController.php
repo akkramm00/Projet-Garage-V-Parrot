@@ -11,6 +11,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 
 class ArrivagesController extends AbstractController
@@ -47,6 +48,8 @@ class ArrivagesController extends AbstractController
      * @param EntityManagerInterface $manager
      * @return Response
      */
+
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/arrivages/nouveau', name: 'arrivages.new', methods: ['GET', 'POST'])]
     public function new(
         Request $request,
@@ -87,6 +90,8 @@ class ArrivagesController extends AbstractController
      * @param [type] $id
      * @return Response
      */
+
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/arrivages/edit/{id}', 'arrivages.edit', methods: ['GET', 'POST'])]
     public function edit(
         ArrivagesRepository $repository,
@@ -128,6 +133,7 @@ class ArrivagesController extends AbstractController
      * @return Response
      */
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/arrivages/suppression/{id}', 'arrivages.delete', methods: (['GET']))]
     public function delete(
         EntityManagerInterface $manager,
@@ -153,5 +159,27 @@ class ArrivagesController extends AbstractController
         );
 
         return $this->redirectToRoute('arrivages.index');
+    }
+    /********************************************************************************************* */
+    #[Security("is_granted('ROLE_USER') and arrivages.isPublic === true")]
+    #[Route('/arrivages/show/{id}', 'arrivages.show', methods: ['GET'])]
+    public function show(
+        ArrivagesRepository $repository,
+        $id
+    ): Response {
+        $arrivages = $repository->findOneBy(["id" => $id]);
+
+        if (!$arrivages) {
+            // Le produit n'existe pas, renvoyez une réponse d'erreur
+            $this->addflash(
+                'warning',
+                'Le produit en question n\'a pas été trouvé !'
+            );
+            return $this->redirectToRoute('home.index');
+        }
+
+        return $this->render('pages/arrivages/show.html.twig', [
+            'arrivages' => $arrivages,
+        ]);
     }
 }
