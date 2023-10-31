@@ -48,12 +48,16 @@ class Arrivages
     private ?bool $isAvaillable = null;
 
     #[ORM\Column]
+    private ?bool $isPublic;
+
+    #[ORM\Column]
     #[Assert\NotNull()]
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column]
     #[Assert\NotNull()]
     private ?\DateTimeImmutable $updatedAt = null;
+
 
     public function __construct()
     {
@@ -152,6 +156,18 @@ class Arrivages
     public function setIsAvaillable(bool $isAvaillable): static
     {
         $this->isAvaillable = $isAvaillable;
+
+        return $this;
+    }
+
+    public function isIsPublic(): ?bool
+    {
+        return $this->isPublic;
+    }
+
+    public function setIsPublic(bool $isPublic): static
+    {
+        $this->isPublic = $isPublic;
 
         return $this;
     }

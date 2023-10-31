@@ -11,7 +11,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 
 class ProductsController extends AbstractController
@@ -24,9 +23,6 @@ class ProductsController extends AbstractController
      * @param Request $request
      * @return Response
      */
-
-
-    #[IsGranted('ROLE_ADMIN', statusCode: 403, exceptionCode: 10010)]
     #[Route('/products', name: 'products', methods: ['GET'])]
     public function index(
         ProductsRepository $repository,
@@ -43,6 +39,7 @@ class ProductsController extends AbstractController
             'products' => $products
         ]);
     }
+
     /************************************************************************* */
 
     /**
@@ -52,8 +49,6 @@ class ProductsController extends AbstractController
      * @param EntityManagerInterface $manager
      * @return Response
      */
-
-    #[IsGranted('ROLE_ADMIN', statusCode: 403, exceptionCode: 10010)]
     #[Route('/products/nouveau', name: 'products.new', methods: ['GET', 'POST'])]
     public function new(
         Request $request,
@@ -92,7 +87,6 @@ class ProductsController extends AbstractController
      * @param [type] $id
      * @return Response
      */
-    #[IsGranted('ROLE_ADMIN', statusCode: 403, exceptionCode: 10010)]
     #[Route('/products/edition/{id}', 'products.edit', methods: ['GET', 'POST'])]
     public function edit(
         ProductsRepository $repository,
@@ -134,8 +128,6 @@ class ProductsController extends AbstractController
      * @param [type] $id
      * @return Response
      */
-
-    #[IsGranted('ROLE_ADMIN', statusCode: 403, exceptionCode: 10010)]
     #[Route('/products/suppression/{id}', 'products.delete', methods: ['GET'])]
     public function delete(
         EntityManagerInterface $manager,
@@ -161,5 +153,17 @@ class ProductsController extends AbstractController
         );
 
         return $this->redirectToRoute('products');
+    }
+
+    /************************************************************************* */
+    #[Route('/products/{id}', 'products.show', methods: ['GET'])]
+    public function show(
+        ProductsRepository $repository,
+        $id
+    ): Response {
+        $products = $repository->findOneBy(["id" => $id]);
+        return $this->render('pages/products/show.html.twig', [
+            'products' => $products,
+        ]);
     }
 }

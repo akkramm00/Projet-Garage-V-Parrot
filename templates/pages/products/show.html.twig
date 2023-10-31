@@ -1,0 +1,101 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} garageVP - {{ products.marque}} {% endblock %}
+
+{% block body %}
+    
+<style>
+
+    body{
+        height:100%;
+        box-sizing: border-box;
+    }
+    .banner{
+        height:800px;
+        background:linear-gradient(rgba(0, 0, 0,.1),rgba(0, 0, 0,.1)),url(https://images.alphacoders.com/717/thumbbig-717700.webp) center center fixed no-repeat;
+        background-size:cover;
+    }
+    .Empty{
+        heigth: 3rem;
+        margin-top:3rem;
+    }
+    .liste li{
+        list-style: none;
+       
+    }
+    .critéres{
+        border: solid 1px transparent;
+        background: white;
+        border-radius: 10px ;
+        heigth: 100%;
+    }
+
+</style>
+
+<body>
+    <div class="container-fluid banner py-5">
+        <div class="container opacity d-flex justify-content-center align-items-center mb-4">
+            <div class="row d-flex justify-content-center align-items-center py-5">
+                <div class="col-12 d-flex justify-content-center align-item-center Empty my-5">
+                </div> 
+                <div class="col-12 col-md-12 col-lg-6 my-5">
+                    <div class="card h-100 box-ch">
+                    <h1 class="p-4">{{ products.marque}}</h1>
+                        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+                            <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                            </div>
+                            <div class="carousel-inner box-ch">
+                            <div class="carousel-item active box-ch">
+                                <img src="{{ asset('images/fondEcran.webp') }}" class="d-block w-100 box-ch p-3" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="{{ asset('images/fondEcran.webp') }}" class="d-block w-100 box-ch p-3" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="{{ asset('images/fondEcran.webp') }}" class="d-block w-100 box-ch p-3" alt="...">
+                            </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                        <div class="card-body">
+                        <h5 class="card-title">{{ products.marque}}</h5>
+                        <p class="card-text">{{ products.description}}</p>
+                        </div>
+                        <div class="card-footer">
+                        <small class="text-muted"><strong>Date de publication :</strong>{{ products.createdAt|date('d/m/Y') }}</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-6 critéres text-start d-flex justify-content-center align-items-center py-4 my-5">
+                    <ul class="description liste fs-4 mt-4 py-4">
+                        <h1 class="mb-5">Critères</h1>
+                        <li><strong>Marque :</strong>{{ products.marque}}</li>
+                        <li><strong>Année-Modèle :</strong>{{ products.model}}</li>
+                        <li><strong>Boite de vitesse :</strong>{{ products.boite}}</li>
+                        <li><strong>Puissance fiscale :</strong>{{ products.puissance}}</li>
+                        <li><strong>Soumis à LOA/LLD</strong> : Non</li>
+                        <li><strong>Mise en circulation</strong> : 07/2015</li>
+                        <li><strong>Carburant</strong>{{ products.energie}}</li>
+                        <li><strong>Type de véhicule</strong> : 4 x 4, SUV</li>
+                        <li><strong>Puissance fiscale</strong> : 16 Cv</li>
+                        <li><strong>Permis</strong> : Avec permis</li>
+                        <li><strong>Description :</strong>{{ products.description}}</li>
+                        <li></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+{% endblock %}

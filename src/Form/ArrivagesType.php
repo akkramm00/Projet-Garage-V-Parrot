@@ -119,6 +119,19 @@ class ArrivagesType extends AbstractType
                 ],
                 'required' => false
             ])
+            ->add('isPublic', CheckboxType::class, [
+                'attr' => [
+                    'class' => 'form-check-input',
+                ],
+                'label' => 'Public',
+                'label_attr' => [
+                    'class' => 'form-check-label'
+                ],
+                'constraints' => [
+                    new Assert\NotNull()
+                ],
+                'required' => true
+            ])
             ->add('submit', submitType::class, [
                 'attr' => [
                     'class' => 'btn btn-primary mt-4'

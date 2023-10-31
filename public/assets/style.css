@@ -306,10 +306,10 @@ header .navbar a:hover{
     font-size: 2.5rem;
 }
 .VehiculesSlider .box .content .price {
-color: var(--main);
-font-weight:600;
-padding: 1rem 0;
-font-size:2.2rem;
+    color: var(--main);
+    font-weight:600;
+    padding: 1rem 0;
+    font-size:2.2rem;
 }
 .VehiculesSlider .box .content .price span {
     color: var(--main);

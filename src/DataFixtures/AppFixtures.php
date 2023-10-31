@@ -41,7 +41,9 @@ class AppFixtures extends Fixture
                 ->setPrix(mt_rand('15000', '40000'))
                 ->setBoite((rand(0, 1) ? 'mecanique' : 'Automatique'))
                 ->setEnergie($energieOptions[array_rand($energieOptions)])
-                ->setPuissance($puissanceOptions[array_rand($puissanceOptions)]);
+                ->setPuissance($puissanceOptions[array_rand($puissanceOptions)])
+                ->setDescription($this->faker->text(300))
+                ->setIsPublic(mt_rand(0, 1) == 1 ? true : false);
 
             $manager->persist($products);
         }
@@ -60,7 +62,8 @@ class AppFixtures extends Fixture
                 ->setBoite((rand(0, 1) ? 'mecanique' : 'Automatique'))
                 ->setEnergie($energieOptions[array_rand($energieOptions)])
                 ->setPuissance($puissanceOptions[array_rand($puissanceOptions)])
-                ->setIsAvaillable(mt_rand(0, 1) ? true : false);
+                ->setIsAvaillable(mt_rand(0, 1) ? true : false)
+                ->setIsPublic(mt_rand(0, 1) == 1 ? true : false);
 
             $manager->persist($arrivages);
         }

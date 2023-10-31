@@ -18,7 +18,7 @@ class Products
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank()]
     #[Assert\Length(min: 2, max: 50)]
-    private ?string $Marque = null;
+    private ?string $Marque;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank()]
@@ -40,11 +40,21 @@ class Products
 
     #[ORM\Column(length: 50, nullable: true)]
     #[Assert\Length(min: 2, max: 50)]
-    private ?string $Puissance = null;
+    private ?string $Puissance;
+
+    #[ORM\Column(length: 255)]
+    #[Assert\NotBlank()]
+    #[Assert\Length(min: 2, max: 50)]
+    private ?string $description;
+
+    #[ORM\Column]
+    private ?bool $isPublic;
 
     #[ORM\Column(type: 'datetime_immutable')]
     #[Assert\NotNull()]
     private ?\DateTimeImmutable $createdAt;
+
+
 
     public function __construct()
     {
@@ -124,6 +134,30 @@ class Products
     public function setPuissance(?string $Puissance): static
     {
         $this->Puissance = $Puissance;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): static
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function isIsPublic(): ?bool
+    {
+        return $this->isPublic;
+    }
+
+    public function setIsPublic(bool $isPublic): static
+    {
+        $this->isPublic = $isPublic;
 
         return $this;
     }

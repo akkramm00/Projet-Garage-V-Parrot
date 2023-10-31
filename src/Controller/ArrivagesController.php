@@ -11,7 +11,6 @@ use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 
 class ArrivagesController extends AbstractController
@@ -24,7 +23,6 @@ class ArrivagesController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    #[IsGranted('ROLE_ADMIN', statusCode: 403, exceptionCode: 10010)]
     #[Route('/arrivages', name: 'arrivages.index', methods: ['GET'])]
     public function index(
         ArrivagesRepository $repository,
@@ -49,7 +47,6 @@ class ArrivagesController extends AbstractController
      * @param EntityManagerInterface $manager
      * @return Response
      */
-    #[IsGranted('ROLE_ADMIN', statusCode: 403, exceptionCode: 10010)]
     #[Route('/arrivages/nouveau', name: 'arrivages.new', methods: ['GET', 'POST'])]
     public function new(
         Request $request,
@@ -90,7 +87,6 @@ class ArrivagesController extends AbstractController
      * @param [type] $id
      * @return Response
      */
-    #[IsGranted('ROLE_ADMIN', statusCode: 403, exceptionCode: 10010)]
     #[Route('/arrivages/edit/{id}', 'arrivages.edit', methods: ['GET', 'POST'])]
     public function edit(
         ArrivagesRepository $repository,
@@ -131,7 +127,7 @@ class ArrivagesController extends AbstractController
      * @param [type] $id
      * @return Response
      */
-    #[IsGranted('ROLE_ADMIN', statusCode: 403, exceptionCode: 10010)]
+
     #[Route('/arrivages/suppression/{id}', 'arrivages.delete', methods: (['GET']))]
     public function delete(
         EntityManagerInterface $manager,
