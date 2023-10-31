@@ -42,6 +42,23 @@ class ProductsController extends AbstractController
     }
 
     /************************************************************************* */
+    #[Route('/products/publique', 'products.index.public', methods: ['GET'])]
+    public function indexPublic(
+        ProductsRepository $repository,
+        PaginatorInterface $paginator,
+        Request $request
+    ): Response {
+        $products = $paginator->paginate(
+            $repository->findPublicProducts(null),
+            $request->query->getInt('page', 1),
+            10
+        );
+
+        return $this->render('pages/products/index_public.html.twig', [
+            'products' => $products
+        ]);
+    }
+    /************************************************************************* */
 
     /**
      * This controller allow us to create news products

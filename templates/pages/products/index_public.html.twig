@@ -1,0 +1,97 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} garageVP - Nos produits{% endblock %}
+
+{% block body %}
+    
+<style>
+
+    .txt-w {
+        text-decoration: none;
+        color: white;
+    }
+    .table{
+        box-shadow:var(--box_shadow);
+    }
+    .navigation{
+        text-shadow:var(--main);
+        text-color:var(--main);
+    }
+    .btn-info{
+        padding: 0.1rem;
+        background: blue;
+    }
+    .btn-warning{
+        padding: 0.1rem;
+        background: yellow;
+    }
+    .banner{
+        height:800px;
+        background:linear-gradient(rgba(0, 0, 0,.1),rgba(0, 0, 0,.1)),url(https://images.alphacoders.com/717/thumbbig-717700.webp) center center fixed no-repeat;
+        background-size:cover;
+    }
+    .Produits{
+        text-shadow: 1rem 1rem 1rem black;
+    }
+    .Empty{
+        heigth: 3rem;
+    }
+
+</style>
+
+<body>
+    <div class="container-fluid banner py-5">
+    <div class="container">
+        <div class="row d-flex justify-content-center align-items-center mb-4">
+            <div class="Empty col-12 d-flex justify-content-center align-items-center text-white text-center pt-5 my-5">
+               
+            </div>
+            <div class="Produits col-12 d-flex justify-content-center align-items-center text-white text-center pt-5">
+                <h1>NOS PRODUITS</h1>
+            </div>
+          
+                {# read and display just one flash message type #}
+               {% for message in app.flashes('success') %}
+               <div class="alert alert-success mt-4">
+                {{ message}}
+               </div>
+               {% endfor %}
+
+                {% for products in products %}
+            <div class="swiper-slide box">
+                <img src="data:image/jpeg;base64,<?php echo $row['Image']; ?>" alt="">
+                <div class="content">
+                    <h3>{{ products.marque}}</h3>
+                    <div class="price"><span>Prix</span>{{ products.description}}</div>
+                    <p>
+                        <span class="fas fa-circle"></span>{{ products.marque}}
+                        <span class="fas fa-circle"></span>{{ products.model}}
+                        <span class="fas fa-circle"></span>{{ products.Prix}}
+                        <span class="fas fa-circle"></span>{{ products.energie}}
+                        <span class="fas fa-circle"></span>{{ products.puissance}}
+                        <span class="fas fa-circle"></span>{{ products.description}}
+                    </p>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+</section>
+
+
+
+            <div class="col-10 count mt-4 text-white">
+                <h2>Il y'a {{ products.getTotalItemCount}} produits au total.</h2>
+            </div>
+
+            <div class="pagination pagination-lg col-10 d-flex justify-content-center align-items-center fs-3 mb-4 pb-5">
+                {{ knp_pagination_render(products) }}
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+{% endblock %}
