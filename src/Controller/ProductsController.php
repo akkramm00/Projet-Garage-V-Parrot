@@ -156,7 +156,7 @@ class ProductsController extends AbstractController
     }
 
     /************************************************************************* */
-    #[Route('/products/{id}', 'products.show', methods: ['GET'])]
+    #[Route('/products/show/{id}', 'products.show', methods: ['GET'])]
     public function show(
         ProductsRepository $repository,
         $id

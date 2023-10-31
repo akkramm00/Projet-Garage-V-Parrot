@@ -50,14 +50,14 @@ class ArrivagesType extends AbstractType
                 'attr' => [
                     'class' => 'form-control',
                     'minlength' => '2',
-                    'maxlength' => '50'
+                    'maxlength' => '255'
                 ],
                 'label' => 'Propriété',
                 'label_attr' => [
                     'class' => 'form-label mt-4'
                 ],
                 'constraints' => [
-                    new Assert\Length(['min' => 2, 'max' => 50]),
+                    new Assert\Length(['min' => 2, 'max' => 255]),
                     new Assert\NotBlank()
                 ]
             ])

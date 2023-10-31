@@ -22,7 +22,7 @@
         color:white;
     }
     .banner{
-        height:760px;
+        height:950px;
         background:linear-gradient(rgba(0, 0, 0,.1),rgba(0, 0, 0,.1)),url(https://images.alphacoders.com/717/thumbbig-717700.webp) center center fixed no-repeat;
         background-size:cover;
         
@@ -100,6 +100,23 @@
                     {{ form_errors(form.Puissance)}}
                 </div>
             </div>
+
+            <div class="form-group fs-4">    
+                {{ form_label(form.description) }}
+                {{ form_widget(form.description) }}
+                <div class="form-error">
+                    {{ form_errors(form.description)}}
+                </div>
+            </div>
+
+            <div class="form-group fs-4 mt-4">    
+                {{ form_label(form.isPublic) }}
+                {{ form_widget(form.isPublic) }}
+                <div class="form-error">
+                    {{ form_errors(form.isPublic)}}
+                </div>
+            </div>
+
 
             <div class="form-group fs-4">    
                 {{ form_row(form.submit) }}
