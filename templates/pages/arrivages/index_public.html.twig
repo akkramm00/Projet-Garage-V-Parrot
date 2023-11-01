@@ -1,44 +1,40 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} garageVP - Nos arrivages {% endblock %}
+{% block title %} garageVP - Nos Arrivages{% endblock %}
 
 {% block body %}
-    
+
 <style>
+.empty{
+    height: 6rem;
+}
 
-    body{
-        height:100%;
-        box-sizing: border-box;
-    }
-    .banner{
-        height:800px;
-        background:linear-gradient(rgba(0, 0, 0,.1),rgba(0, 0, 0,.1)),url(https://images.alphacoders.com/717/thumbbig-717700.webp) center center fixed no-repeat;
-        background-size:cover;
-    }
-    .Empty{
-        heigth: 3rem;
-        margin-top:3rem;
-    }
-    .liste li{
-        list-style: none;
-       
-    }
-    .critéres{
-        border: solid 1px transparent;
-        background: white;
-        border-radius: 10px ;
-        heigth: 100%;
-    }
-
+.info{
+    background: lightyellow;
+    
+}
 </style>
+    
+
 
 <body>
-    <div class="container-fluid banner py-5">
-        <div class="container opacity d-flex justify-content-center align-items-center mb-4">
-            <div class="row d-flex justify-content-center align-items-center py-5">
+<div class="container-fluid banner py-5">
+    <div class="container">
+        <div class="col-12 d-flex justify-content-center align-item-center empty my-4">
+        </div> 
+        <div class="col-12 d-flex justify-content-center align-items-center mt-5">
+             <h1>TOUS NOS ARRIVAGES</h1>
+        </div>
+
+        <div class="col-12 pt-5 text-danger">
+            <h2>Il y'a {{ arrivages.getTotalItemCount}} produits au total.</h2>
+        </div>
+
+        {% for arrivages in arrivages %}
+            <div class="row d-flex justify-content-center align-items-center info py-5 mb-4">
                 <div class="col-12 d-flex justify-content-center align-item-center Empty my-5">
                 </div> 
-                <div class="col-12 col-md-12 col-lg-6 my-5">
+                <div class="col-12 col-md-6 col-lg-5">
                     <div class="card h-100 box-ch">
                     <h1 class="p-4">{{ arrivages.marque}}</h1>
                         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
@@ -76,7 +72,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-md-12 col-lg-6 critéres text-start d-flex justify-content-center align-items-center py-4 my-5">
+                <div class="col-12 col-md-6 col-lg-5 critéres text-start d-flex justify-content-center align-items-center py-4">
                     <ul class="description liste fs-4 mt-4 py-4">
                         <h1 class="mb-5">Critères</h1>
                         <li><strong>Marque :</strong>{{ arrivages.marque}}</li>
@@ -89,13 +85,23 @@
                         <li><strong>Type de véhicule</strong> : 4 x 4, SUV</li>
                         <li><strong>Puissance fiscale</strong> : 16 Cv</li>
                         <li><strong>Permis</strong> : Avec permis</li>
-                        <li><strong>Description :</strong>{{ arrivages.property}}</li>
-                        <li></li>
+                        <li><strong>Description :</strong>{{ arrivages.property|slice(0,100) ~ '...' }}</li>
                     </ul>
                 </div>
+                    <div class="Produits col-10">
+                <a href="{{ path('arrivages.show', { id:arrivages.id }) }}" class="btn btn-primary">
+                    lear More
+                </a>
+    </div>
+            </div>
+        {% endfor %}
+
+            <div class="pagination pagination-lg col-12 d-flex justify-content-center align-items-center fs-3 mb-4 py-5">
+                {{ knp_pagination_render(arrivages) }}
             </div>
         </div>
     </div>
+</div>
 </body>
 
 {% endblock %}

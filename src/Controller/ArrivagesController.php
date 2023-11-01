@@ -39,6 +39,23 @@ class ArrivagesController extends AbstractController
             'arrivages' => $arrivages,
         ]);
     }
+    /********************************************************* */
+    #[Route('/arrivages/publique', 'arrivages.index.public', methods: ['GET'])]
+    public function indexPublic(
+        ArrivagesRepository $repository,
+        PaginatorInterface $paginator,
+        Request $request
+    ): Response {
+        $arrivages = $paginator->paginate(
+            $repository->findPublicArrivages(null),
+            $request->query->getInt('page', 1),
+            10
+        );
+
+        return $this->render('pages/arrivages/index_public.html.twig', [
+            'arrivages' => $arrivages
+        ]);
+    }
 
     /*************************************************************************** */
     /**

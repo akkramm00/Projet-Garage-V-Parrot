@@ -20,7 +20,6 @@
 <body>
 <div class="container-fluid banner py-5">
     <div class="container">
-        {% if not products.items is same as([]) %}
         <div class="col-12 d-flex justify-content-center align-item-center empty my-4">
         </div> 
         <div class="col-12 d-flex justify-content-center align-items-center mt-5">
@@ -101,9 +100,6 @@
                 {{ knp_pagination_render(products) }}
             </div>
         </div>
-        {% else %}
-            <h4>Il n'y a pas de produits !</h4>
-        {% endif %}
     </div>
 </div>
 </body>
