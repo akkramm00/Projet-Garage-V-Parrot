@@ -33,7 +33,7 @@ class ProductsRepository extends ServiceEntityRepository
             ->where('p.isPublic = 1')
             ->orderBy('p.createdAt', 'DESC');
 
-        if (!$nbProducts === 0 || !$nbProducts === null) {
+        if (!$nbProducts !== 0 || !$nbProducts !== null) {
             $queryBuilder->setMaxResults($nbProducts);
         }
 

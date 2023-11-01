@@ -63,5 +63,43 @@
     </div>
   </section>
 <!-- Icons Container end-->
+<div class="container my-5 d-flex -justif-content-center align-items-center">
+<div class="row row-cols-1 row-cols-md-3 flex-wrap g-4">
+    <div class="col-12">
+        <h1 class="mb-5 text-center">NOS VENTES</h1>
+    </div>
+  {% for products in products %}
+    <div class="col-12 col-md-6 col-lg-4">
+    <div class="card">
+      <img src="{{ asset('images/fondEcran.webp') }}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h2 class="card-title">{{ products.marque}}</h2>
+                <div class="col shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+                    <ul class="description liste fs-4 mt-4 py-4">
+                        <h1 class="mb-5">Critères</h1>
+                        <li><strong>Marque :</strong>{{ products.marque}}</li>
+                        <li><strong>Année-Modèle :</strong>{{ products.model}}</li>
+                        <li><strong>Boite de vitesse :</strong>{{ products.boite}}</li>
+                        <li><strong>Puissance fiscale :</strong>{{ products.puissance}}</li>
+                        <li><strong>Soumis à LOA/LLD</strong> : Non</li>
+                        <li><strong>Mise en circulation</strong> : 07/2015</li>
+                        <li><strong>Carburant</strong>{{ products.energie}}</li>
+                        <li><strong>Type de véhicule</strong> : 4 x 4, SUV</li>
+                        <li><strong>Puissance fiscale</strong> : 16 Cv</li>
+                        <li><strong>Permis</strong> : Avec permis</li>
+                        <li><strong>Description :</strong>{{ products.description|slice(0,100) ~ '...' }}</li>
+                    </ul>
+                </div>      
+        </div>
+    </div>
+</div>
+{% endfor %}
+    <div class="Produits col-10">
+                <a href="{{ path('products.index.public') }}" class="btn btn-primary">
+                    Voir Tous Nos Produits
+                </a>
+    </div>
+</div>
+</div>
 
 {% endblock %}
