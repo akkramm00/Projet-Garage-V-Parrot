@@ -71,6 +71,8 @@
                             <th>Prenom</th>
                             <th>Message</th>
                             <th>Date de création</th>
+                            <th>Edition</th>
+                            <th>Suppression</th>
 
                         </tr>
                     </thead>
@@ -82,6 +84,13 @@
                                 <td>{{ review.prenom }}</td>
                                 <td>{{ review.message|slice(0,50) ~ '...' }}</td>
                                 <td>{{ review.createdAt|date('d/m/Y') }}</td>
+                                      <td>
+                                    <a href="{{ path('review.edit', { id: review.id }) }}">Modifier</a>
+                                </td>
+                                <td>
+                                    <a href="{{ path('review.delete', { id: review.id }) }}">supprimer</a>
+                                </td>
+                                
 
                            </tr>
                         {% endfor %}

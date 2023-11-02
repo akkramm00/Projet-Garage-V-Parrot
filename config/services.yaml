@@ -28,6 +28,10 @@ services:
     App\Entity\Arrivages:
         public: true
 
+    
+    App\Entity\Review:
+        public: true
+
 
     App\EntityListener\:
         resource: "../src/EntityListener/"
