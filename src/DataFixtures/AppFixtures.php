@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Arrivages;
 use App\Entity\User;
+use App\Entity\Review;
 use Faker\Factory;
 use Faker\Generator;
 use App\Entity\Products;
@@ -79,6 +80,18 @@ class AppFixtures extends Fixture
 
 
             $manager->persist($user);
+        }
+
+        // Review
+        for ($r = 0; $r < 10; $r++) {
+            $review = new Review();
+            $review->setNom($this->faker->name())
+                ->setPrenom($this->faker->firstName())
+                ->setMessage($this->faker->text(255))
+                ->setRoles(['ROLE_USER']);
+
+
+            $manager->persist($review);
         }
 
         $manager->flush();

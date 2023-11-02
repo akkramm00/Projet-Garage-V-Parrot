@@ -48,6 +48,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\NotNull()]
     private ?\DateTimeImmutable $createdAt = null;
 
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
