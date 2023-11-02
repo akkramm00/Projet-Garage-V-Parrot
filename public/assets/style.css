@@ -330,6 +330,9 @@ header .navbar a:hover{
 }.swiper-pagination-bullet-active{
     background:var(--main);
 }
+.{
+    box-shadow: var(--box_shadow);
+}
 /* Vehicules Section End*/
 
 /* Featured Section Start */
