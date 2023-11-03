@@ -38,6 +38,24 @@ class ReviewController extends AbstractController
             'review' => $review
         ]);
     }
+
+    /************************************************************************* */
+    #[Route('/review/publique', 'review.index.public', methods: ['GET'])]
+    public function indexPublic(
+        ReviewRepository $repository,
+        PaginatorInterface $paginator,
+        Request $request
+    ): Response {
+        $review = $paginator->paginate(
+            $repository->findPublicReview(null),
+            $request->query->getInt('page', 1),
+            10
+        );
+
+        return $this->render('pages/review/index_public.html.twig', [
+            'review' => $review
+        ]);
+    }
     /********************************************************** */
     /**
      * This controller allow us to create a new review

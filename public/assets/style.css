@@ -447,6 +447,7 @@ header .navbar a:hover{
 .ReviewSlider .box img {
     border-radius: 50%;
     object-fit: cover;
+    background: black;
 }
 .ReviewSlider .box .content p {
     font-size: 1.5rem;

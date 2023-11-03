@@ -33,10 +33,13 @@ class Review
     #[Assert\NotNull()]
     private array $roles = [];
 
+    #[ORM\Column]
+    private ?bool $isPublic = null;
 
     #[ORM\Column]
     #[Assert\NotNull()]
     private ?\DateTimeImmutable $createdAt = null;
+
 
     /**
      * Constructor
@@ -105,6 +108,13 @@ class Review
         return $this;
     }
 
+    public function setIsPublic(bool $isPublic): static
+    {
+        $this->isPublic = $isPublic;
+
+        return $this;
+    }
+
     public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
@@ -115,5 +125,10 @@ class Review
         $this->createdAt = $createdAt;
 
         return $this;
+    }
+
+    public function isIsPublic(): ?bool
+    {
+        return $this->isPublic;
     }
 }

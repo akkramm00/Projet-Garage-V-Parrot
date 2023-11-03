@@ -23,7 +23,7 @@
         <div class="col-12 d-flex justify-content-center align-item-center empty my-4">
         </div> 
         <div class="col-12 d-flex justify-content-center align-items-center mt-5">
-             <h1>NOS PRODUITS</h1>
+             <h1 class="heading">NOS PRODUITS</h1>
         </div>
 
         <div class="col-12 pt-5 text-danger">
@@ -64,11 +64,11 @@
                             </button>
                         </div>
                         <div class="card-body">
-                        <h5 class="card-title">{{ products.marque}}</h5>
-                        <p class="card-text">{{ products.description}}</p>
+                            <h5 class="card-title">{{ products.marque}}</h5>
+                            <p class="card-text fs-5">{{ products.description}}</p>
                         </div>
-                        <div class="card-footer">
-                        <small class="text-muted"><strong>Date de publication :</strong>{{ products.createdAt|date('d/m/Y') }}</small>
+                        <div class="card-footer bg-info text-white">
+                   s         <small class="text-white fs-5"><strong>Date de publication :</strong>{{ products.createdAt|date('d/m/Y') }}</small>
                         </div>
                     </div>
                 </div>
@@ -84,16 +84,18 @@
                         <li><strong>Carburant</strong>{{ products.energie}}</li>
                         <li><strong>Type de véhicule</strong> : 4 x 4, SUV</li>
                         <li><strong>Puissance fiscale</strong> : 16 Cv</li>
+                        <li><strong>Nombre de place</strong> : 5</li>
                         <li><strong>Permis</strong> : Avec permis</li>
+                        <li><strong>Disponibilité des pièces</strong> : Non renseignée</li>
                         <li><strong>Description :</strong>{{ products.description|slice(0,100) ~ '...' }}</li>
                     </ul>
                 </div>
                     <div class="Produits col-10">
                 <a href="{{ path('products.show', { id:products.id }) }}" class="btn btn-primary">
-                    lear More
+                    Read More
                 </a>
-    </div>
             </div>
+        </div>
         {% endfor %}
 
             <div class="pagination pagination-lg col-12 d-flex justify-content-center align-items-center fs-3 mb-4 py-5">

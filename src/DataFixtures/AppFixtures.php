@@ -88,8 +88,8 @@ class AppFixtures extends Fixture
             $review->setNom($this->faker->name())
                 ->setPrenom($this->faker->firstName())
                 ->setMessage($this->faker->text(255))
-                ->setRoles(['ROLE_USER']);
-
+                ->setRoles(['ROLE_USER'])
+                ->setIsPublic(mt_rand(0, 1) == 1 ? true : false);
 
             $manager->persist($review);
         }
