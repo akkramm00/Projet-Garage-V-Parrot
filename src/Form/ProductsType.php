@@ -6,6 +6,7 @@ use App\Entity\Products;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
@@ -118,6 +119,15 @@ class ProductsType extends AbstractType
                 'constraints' => [
                     new Assert\Length(['min' => 2, 'max' => 255]),
                     new Assert\NotBlank()
+                ]
+            ])
+            ->add('imageFile', FileType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'label' => 'Image du produit',
+                'label_attr' => [
+                    'class' => 'form-label mt-4'
                 ]
             ])
             ->add('isPublic', CheckboxType::class, [

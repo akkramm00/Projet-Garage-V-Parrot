@@ -71,12 +71,13 @@
   {% for products in products %}
     <div class="col-12 col-md-6 col-lg-4">
     <div class="card">
-      <img src="{{ asset('images/fondEcran.webp') }}" class="card-img-top" alt="...">
+      <img src="{{ vich_uploader_asset(products, 'imageFile') }}" class="card-img-top" alt="...">
         <div class="card-body">
             <h2 class="card-title">{{ products.marque}}</h2>
                 <div class="col shadow-lg p-3 mb-5 bg-body-tertiary rounded">
                     <ul class="description liste fs-4 mt-4 py-4">
                         <h1 class="mb-5">Critères</h1>
+                        <h2 class="mb-5">Prix :</strong>{{ products.prix}} €</h2>
                         <li><strong>Marque :</strong>{{ products.marque}}</li>
                         <li><strong>Année-Modèle :</strong>{{ products.model}}</li>
                         <li><strong>Boite de vitesse :</strong>{{ products.boite}}</li>
@@ -89,7 +90,10 @@
                         <li><strong>Permis</strong> : Avec permis</li>
                         <li><strong>Description :</strong>{{ products.description|slice(0,100) ~ '...' }}</li>
                     </ul>
-                </div>      
+                </div> 
+                <div class="card-footer bg-info text-white">
+                    <small class="text-white fs-5"><strong>Date de publication :</strong>{{ products.createdAt|date('d/m/Y') }}</small>
+                </div>     
         </div>
     </div>
 </div>
@@ -131,6 +135,9 @@
                         <li><strong>Description :</strong>{{ arrivages.property|slice(0,100) ~ '...' }}</li>
                     </ul>
                 </div>      
+                <div class="card-footer bg-info text-white">
+                    <small class="text-white fs-5"><strong>Date de publication :</strong>{{ arrivages.createdAt|date('d/m/Y') }}</small>
+                </div> 
         </div>
     </div>
 </div>

@@ -41,7 +41,7 @@
         "symfony/yaml": "6.1.*",
         "twig/extra-bundle": "^2.12|^3.0",
         "twig/twig": "^2.12|^3.0",
-        "symfony/money-bundle": "^2.0"
+        "vich/uploader-bundle": "^2.2"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.4",
