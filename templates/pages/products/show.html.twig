@@ -11,7 +11,7 @@
         box-sizing: border-box;
     }
     .banner{
-        height:900px;
+        height:100%;
         background:linear-gradient(rgba(0, 0, 0,.1),rgba(0, 0, 0,.1)),url(https://images.alphacoders.com/717/thumbbig-717700.webp) center center fixed no-repeat;
         background-size:cover;
     }
@@ -71,8 +71,8 @@
                         <h5 class="card-title">{{ products.marque}}</h5>
                         <p class="card-text">{{ products.description}}</p>
                         </div>
-                        <div class="card-footer">
-                        <small class="text-muted"><strong>Date de publication :</strong>{{ products.createdAt|date('d/m/Y') }}</small>
+                        <div class="card-footer bg-secondary my-3">
+                        <small class="text-white fs-5"><strong>Date de publication :</strong>{{ products.createdAt|date('d/m/Y') }}</small>
                         </div>
                     </div>
                 </div>

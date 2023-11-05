@@ -4,7 +4,12 @@ vich_uploader:
         type: attribute
 
     mappings:
-       products_images:
-           uri_prefix: /images/products
-           upload_destination: '%kernel.project_dir%/public/images/products'
-           namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+        products_images:
+            uri_prefix: /images/products
+            upload_destination: '%kernel.project_dir%/public/images/products'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+        arrivages_images:
+            uri_prefix: /images/arrivages
+            upload_destination: '%kernel.project_dir%/public/images/arrivages'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer

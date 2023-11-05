@@ -11,7 +11,7 @@
         box-sizing: border-box;
     }
     .banner{
-        height:800px;
+        height:100%;
         background:linear-gradient(rgba(0, 0, 0,.1),rgba(0, 0, 0,.1)),url(https://images.alphacoders.com/717/thumbbig-717700.webp) center center fixed no-repeat;
         background-size:cover;
     }
@@ -49,13 +49,13 @@
                             </div>
                             <div class="carousel-inner box-ch">
                             <div class="carousel-item active box-ch">
-                                <img src="{{ asset('images/fondEcran.webp') }}" class="d-block w-100 box-ch p-3" alt="...">
+                                <img src="{{ vich_uploader_asset(arrivages, 'imageFile') }}" class="d-block w-100 box-ch p-3" alt="...">
                             </div>
                             <div class="carousel-item">
-                                <img src="{{ asset('images/fondEcran.webp') }}" class="d-block w-100 box-ch p-3" alt="...">
+                                <img src="{{ vich_uploader_asset(arrivages, 'imageFile') }}" class="d-block w-100 box-ch p-3" alt="...">
                             </div>
                             <div class="carousel-item">
-                                <img src="{{ asset('images/fondEcran.webp') }}" class="d-block w-100 box-ch p-3" alt="...">
+                                <img src="{{ vich_uploader_asset(arrivages, 'imageFile') }}" class="d-block w-100 box-ch p-3" alt="...">
                             </div>
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -71,8 +71,8 @@
                         <h5 class="card-title">{{ arrivages.marque}}</h5>
                         <p class="card-text">{{ arrivages.property}}</p>
                         </div>
-                        <div class="card-footer">
-                        <small class="text-muted"><strong>Date de publication :</strong>{{ arrivages.createdAt|date('d/m/Y') }}</small>
+                        <div class="card-footer bg-secondary my-3">
+                        <small class="text-white fs-5"><strong>Date de publication :</strong>{{ arrivages.createdAt|date('d/m/Y') }}</small>
                         </div>
                     </div>
                 </div>

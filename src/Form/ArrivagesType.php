@@ -6,6 +6,7 @@ use App\Entity\Arrivages;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -104,6 +105,15 @@ class ArrivagesType extends AbstractType
                 'constraints' => [
                     new Assert\Length(['min' => 2, 'max' => 50]),
                     new Assert\NotBlank()
+                ]
+            ])
+            ->add('imageFile', FileType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'label' => 'Image de l\'arrivage',
+                'label_attr' => [
+                    'class' => 'form-label mt-4'
                 ]
             ])
             ->add('isAvaillable', CheckboxType::class, [
