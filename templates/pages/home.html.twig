@@ -116,7 +116,7 @@
   {% for arrivages in arrivages %}
     <div class="col-12 col-md-6 col-lg-4">
     <div class="card">
-      <img src="{{ asset('images/fondEcran.webp') }}" class="card-img-top" alt="...">
+      <img src="{{ vich_uploader_asset(arrivages, 'imageFile') }}" class="card-img-top" alt="...">
         <div class="card-body">
             <h2 class="card-title">{{ arrivages.marque}}</h2>
                 <div class="col shadow-lg p-3 mb-5 bg-body-tertiary rounded">
@@ -222,7 +222,7 @@
           {% for review in review %}
            <div class="col-12 col-md-6 col-lg-4 ReviewSlider">
                 <div class="swiper-slide box text-center">
-                    <img src="" width="180px" height="180px">
+                    <img src="{{ vich_uploader_asset(review, 'imageFile') }}" width="180px" height="180px">
                     <div class="content">
                         <span class="fs-3">{{ review.nom }}</span>
                         <span class="fs-3">{{ review.prenom }}</span>

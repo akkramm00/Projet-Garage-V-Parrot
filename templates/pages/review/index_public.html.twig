@@ -15,8 +15,7 @@
 }
 img{
     border-radius: 50%;
-    border: solid 1px black;
-    background: black;
+    border: solid 1px transparent;
     margin: 2rem;
 }
 </style>
@@ -40,7 +39,7 @@ img{
           {% for review in review %}
            <div class="col-12 col-md-6 col-lg-4">
                 <div class="swiper-slide box text-center">
-                    <img src="" width="180px" height="180px">
+                    <img src="{{ vich_uploader_asset(review, 'imageFile') }}" width="180px" height="180px">
                     <div class="content">
                         <span class="fs-3">{{ review.nom }}</span>
                         <span class="fs-3">{{ review.prenom }}</span>
