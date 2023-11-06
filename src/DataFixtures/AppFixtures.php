@@ -2,12 +2,13 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Products;
 use App\Entity\Arrivages;
 use App\Entity\User;
 use App\Entity\Review;
+use App\Entity\Contact;
 use Faker\Factory;
 use Faker\Generator;
-use App\Entity\Products;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -92,6 +93,17 @@ class AppFixtures extends Fixture
                 ->setIsPublic(mt_rand(0, 1) == 1 ? true : false);
 
             $manager->persist($review);
+        }
+
+        // Contact
+        for ($c = 0; $c < 5; $c++) {
+            $contact = new Contact();
+            $contact->setFullName($this->faker->name())
+                ->setEmail($this->faker->email())
+                ->setSubject('Demande n° . ($c + 1')
+                ->setMessage($this->faker->text());
+
+            $manager->persist($contact);
         }
 
         $manager->flush();

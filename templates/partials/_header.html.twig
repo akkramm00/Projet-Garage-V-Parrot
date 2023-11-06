@@ -8,7 +8,7 @@
             <a href="{{ path('arrivages.index.public') }}">Nos Arrivages</a>
             <a href="./#Service">Services</a>
             <a href="{{ path('review.index.public') }}">Reviews</a>
-            <a href="./#Contact">Contact</a>
+            <a href="{{ path('contact.index') }}">Contact</a>
         </nav>
        
         {% if app.user and is_granted('ROLE_ADMIN') %}
