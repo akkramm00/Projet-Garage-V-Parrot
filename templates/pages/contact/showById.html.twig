@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} garageVP -message du contact{% endblock %}
+
+{% block body %}
+    
+<style>
+
+    body{
+        height:100%;
+        box-sizing: border-box;
+    }
+    .banner{
+        height:800px;
+        background:linear-gradient(rgba(0, 0, 0,.1),rgba(0, 0, 0,.1)),url(https://images.alphacoders.com/717/thumbbig-717700.webp) center center fixed no-repeat;
+        background-size:cover;
+    }
+    .Empty{
+        heigth: 3rem;
+        margin-top:3rem;
+    }
+    .liste li{
+        list-style: none;
+       
+    }
+    .critéres{
+        border: solid 1px transparent;
+        background: white;
+        border-radius: 10px ;
+        heigth: 100%;
+    }
+
+</style>
+
+<!-- Review section Start -->
+<section id="Review" class="review">
+    <h1 class="heading">DETAIL DU MESSAGE</h1>
+    <div class="swiper ReviewSlider">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide box">
+
+                <div class="content">
+                    <span class="fs-3">{{ contact.fullName }}</span>
+                    <span class="fs-3">{{ contact.email }}</span>
+                    <p>{{ contact.message }}</p>
+                    <h3>Satisfait</h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

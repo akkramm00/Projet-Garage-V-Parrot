@@ -32,6 +32,9 @@ services:
     App\Entity\Review:
         public: true
 
+    App\Entity\Contact:
+        public: true
+
 
     App\EntityListener\:
         resource: "../src/EntityListener/"
@@ -41,3 +44,5 @@ services:
         autowire: true
 
     
+    knp_paginator:
+        class: Knp\Component\Pager\Paginator

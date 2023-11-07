@@ -1,0 +1,105 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} garageVP - Nos produits{% endblock %}
+
+{% block body %}
+    
+<style>
+
+    .txt-w {
+        text-decoration: none;
+        color: white;
+    }
+    .table{
+        box-shadow:var(--box_shadow);
+    }
+    .navigation{
+        text-shadow:var(--main);
+        text-color:var(--main);
+    }
+    .btn-info{
+        padding: 0.1rem;
+        background: blue;
+    }
+    .btn-warning{
+        padding: 0.1rem;
+        background: yellow;
+    }
+    .banner{
+        height:100%;
+        background:linear-gradient(rgba(0, 0, 0,.1),rgba(0, 0, 0,.1)),url(https://images.alphacoders.com/717/thumbbig-717700.webp) center center fixed no-repeat;
+        background-size:cover;
+    }
+    .Produits{
+        text-shadow: 1rem 1rem 1rem black;
+    }
+    .Empty{
+        heigth: 3rem;
+    }
+
+</style>
+
+<body>
+    <div class="container-fluid banner py-5">
+    <div class="container">
+        <div class="row d-flex justify-content-center align-items-center mb-4">
+            <div class="Empty col-12 d-flex justify-content-center align-items-center text-white text-center pt-5 my-5">
+               
+            </div>
+            <div class="Produits col-12 d-flex justify-content-center align-items-center text-white text-center pt-5">
+                <h1 class=" heading">Les messages</h1>
+            </div>
+          
+                {# read and display just one flash message type #}
+               {% for message in app.flashes('success') %}
+               <div class="alert alert-success mt-4">
+                {{ message}}
+               </div>
+               {% endfor %}
+
+
+
+            <div class="col-10 d-flex justify-content-center align-items-center text-center ">
+                <table class="table table-primary table-striped  fs-5 table-hover my-5">
+                    <thead class="py-5 fs-5 text-danger">
+                        <tr>
+                            <th scope="col">Numéro</th>
+                            <th scope="col">Nom/prénom</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Sujet</th>
+                            <th scope="col">Message</th>
+                            <th scope="col">Date de création</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for contact in contact %}
+                           <tr>
+                                <th class="d-flex justify-content-center align-items-center fs-5 text-danger" scope="row">{{ contact.id }}</th>
+                                <th>{{ contact.fullName }}</th>
+                                <td>{{ contact.email}}</td>
+                                <td>{{ contact.subject }}</td>
+                                <td>{{ contact.message|slice(0,100) ~ '...'  }}</td>
+                                <td>{{ contact.createdAt|date('d/m/Y') }}</td>
+                                {# <td>
+                                    <a href="{{ path('showById', { id:contact.id }) }}">détail</a>
+                                </td> #}
+                                
+                                <td>
+                                    <a href="{{ path('show.delete', { id:contact.id }) }}">supprimer</a>
+                                </td>
+                           </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="pagination pagination-lg col-10 d-flex justify-content-center align-items-center fs-3 mb-4 pb-5">
+                {{ knp_pagination_render(contact) }}
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+{% endblock %}
