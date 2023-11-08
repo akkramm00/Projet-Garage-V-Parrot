@@ -11,6 +11,8 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 
@@ -27,6 +29,7 @@ class ContactController extends AbstractController
     public function index(
         Request $request,
         EntityManagerInterface $manager,
+        MailerInterface $mailer
     ): Response {
         $contact = new Contact();
 
@@ -42,6 +45,19 @@ class ContactController extends AbstractController
             $contact = $form->getData();
             $manager->persist($contact);
             $manager->flush();
+
+            //Email
+            $email = (new Email())
+                ->from($contact->getEmail())
+                ->to('houssaine.elyaacoubi82@gmail.com')
+                //->cc('cc@example.com')
+                //->bcc('bcc@example.com')
+                //->replyTo('fabien@example.com')
+                //->priority(Email::PRIORITY_HIGH)
+                ->subject($contact->getSubject())
+                ->html($contact->getMessage());
+
+            $mailer->send($email);
 
             $this->addFlash(
                 'success',

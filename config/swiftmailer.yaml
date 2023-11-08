@@ -1,0 +1,7 @@
+swiftmailer:
+    transport: smtp
+    host: sandbox.smtp.mailtrap.io
+    port: 2525
+    username: dea8cc95fb318d
+    password: 7a080828fd7eb2
+    Auth: PLAIN, LOGIN and CRAM-MD5
