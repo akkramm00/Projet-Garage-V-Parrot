@@ -5,14 +5,13 @@ namespace App\Controller;
 use App\Entity\Contact;
 use App\Form\ContactType;
 use App\Repository\ContactRepository;
+use App\Service\MailService;
 use Symfony\Component\HttpFoundation\Request;
 use Knp\Component\Pager\PaginatorInterface;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 
@@ -29,7 +28,7 @@ class ContactController extends AbstractController
     public function index(
         Request $request,
         EntityManagerInterface $manager,
-        MailerInterface $mailer
+        MailService $mailService
     ): Response {
         $contact = new Contact();
 
@@ -43,24 +42,19 @@ class ContactController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $contact = $form->getData();
+
             $manager->persist($contact);
             $manager->flush();
 
 
             //Email
-            $email = (new TemplatedEmail())
-                ->from($contact->getEmail())
-                ->to('admin@garagevp.com')
-                ->subject($contact->getSubject())
-                // path of the Twig template to render
-                ->htmlTemplate('emails/contact.html.twig')
+            $mailService->sendEmail(
+                $contact->getEmail(),
+                $contact->getSubject(),
+                'emails/contact.html.twig',
+                ['contact' => $contact]
 
-                // pass variables (name => value) to the template
-                ->context([
-                    'contact' => $contact
-                ]);
-
-            $mailer->send($email);
+            );
 
             $this->addFlash(
                 'success',
