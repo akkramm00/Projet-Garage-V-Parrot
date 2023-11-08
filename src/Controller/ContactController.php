@@ -8,11 +8,11 @@ use App\Repository\ContactRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Knp\Component\Pager\PaginatorInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\Email;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 
@@ -46,16 +46,19 @@ class ContactController extends AbstractController
             $manager->persist($contact);
             $manager->flush();
 
+
             //Email
-            $email = (new Email())
+            $email = (new TemplatedEmail())
                 ->from($contact->getEmail())
-                ->to('houssaine.elyaacoubi82@gmail.com')
-                //->cc('cc@example.com')
-                //->bcc('bcc@example.com')
-                //->replyTo('fabien@example.com')
-                //->priority(Email::PRIORITY_HIGH)
+                ->to('admin@garagevp.com')
                 ->subject($contact->getSubject())
-                ->html($contact->getMessage());
+                // path of the Twig template to render
+                ->htmlTemplate('emails/contact.html.twig')
+
+                // pass variables (name => value) to the template
+                ->context([
+                    'contact' => $contact
+                ]);
 
             $mailer->send($email);
 
