@@ -25,7 +25,7 @@ class ContactCrudController extends AbstractCrudController
             ->setEntityLabelInSingular('Demande de contact')
 
             ->setPageTitle("index", "GarageVP - Administration des demandes de contact")
-            ->setPaginatorPageSize('10')
+            ->setPaginatorPageSize(10)
             ->addFormTheme('@FOSCKEditor/Form/ckeditor_widget.html.twig');
     }
 
