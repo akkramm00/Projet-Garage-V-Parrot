@@ -1,256 +1,308 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Garage.V.Parrot !{% endblock %}
+{% block title %}Garage.V.Parrot !
+{% endblock %}
 
 {% block body %}
 
-{% block login %}
-          {% include "partials/_login.html.twig" %}
-{% endblock %}
+	{% block login %}
+		{% include "partials/_login.html.twig" %}
+	{% endblock %}
 
-<!--Home Section Start-->
-<section id="Home" class="home">
-    <h3 data-speed="-2" class="homeParalexEffect"><span>G</span>.ParroT</h3>
-    <img data-speed="5" class="homeParalexEffect" src="{{ asset('images/Présentation3.jpg') }}" alt="">
-</section>
-<!--Home Section End-->
+	<!--Home Section Start-->
+	<section id="Home" class="home">
+		<h3 data-speed="-2" class="homeParalexEffect">
+			<span>G</span>.ParroT</h3>
+		<img data-speed="5" class="homeParalexEffect" src="{{ asset('images/Présentation3.jpg') }}" alt="">
+	</section>
+	<!--Home Section End-->
 
-    {% for message in app.flashes('success') %}
-        <div class="alert alert-success text-center fs-4 mt-4">
-        {{ message}}
-        </div>
-    {% endfor %}
+	{% for message in app.flashes('success') %}
+		<div class="alert alert-success text-center fs-4 mt-4">
+			{{ message}}
+		</div>
+	{% endfor %}
 
-    {% for message in app.flashes('warning') %}
-        <div class="alert alert-warning  text-center mt-4">
-        {{ message}}
-        </div>
-    {% endfor %}
-<!-- Icons Container Start-->
-  <section class="iconsContainer">
-    <div class="icons">
+	{% for message in app.flashes('warning') %}
+		<div class="alert alert-warning  text-center mt-4">
+			{{ message}}
+		</div>
+	{% endfor %}
+	<!-- Icons Container Start-->
+	<section class="iconsContainer">
+		<div class="icons">
 
 
-        <i class="fas fa-home"></i>
-        <div class="content">
-            <h3>100+</h3>
-            <p>Branches</p>
-        </div>
-    </div>
+			<i class="fas fa-home"></i>
+			<div class="content">
+				<h3>100+</h3>
+				<p>Branches</p>
+			</div>
+		</div>
 
-    <div class="icons">
-        <i class="fas fa-home"></i>
-        <div class="content">
-            <h3>5800+</h3>
-            <p>Voitures Vendues</p>
-        </div>
-    </div>
+		<div class="icons">
+			<i class="fas fa-home"></i>
+			<div class="content">
+				<h3>5800+</h3>
+				<p>Voitures Vendues</p>
+			</div>
+		</div>
 
-    <div class="icons">
-        <i class="fas fa-home"></i>
-        <div class="content">
-            <h3>2560+</h3>
-            <p>Clients Satisfaits</p>
-        </div>
-    </div>
+		<div class="icons">
+			<i class="fas fa-home"></i>
+			<div class="content">
+				<h3>2560+</h3>
+				<p>Clients Satisfaits</p>
+			</div>
+		</div>
 
-    <div class="icons">
-        <i class="fas fa-home"></i>
-        <div class="content">
-            <h3>100+</h3>
-            <p>Nouveautés</p>
-        </div>
-    </div>
-  </section>
-<!-- Icons Container end-->
-<div class="container my-5 d-flex -justif-content-center align-items-center">
-<div class="row row-cols-1 row-cols-md-3 flex-wrap g-4">
-    <div class="col-12">
-        <h1 class=" heading mb-5 text-center">NOS VENTES</h1>
-    </div>
-  {% for products in products %}
-    <div class="col-12 col-md-6 col-lg-4">
-    <div class="card">
-      <img src="{{ vich_uploader_asset(products, 'imageFile') }}" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h2 class="card-title">{{ products.marque}}</h2>
-                <div class="col shadow-lg p-3 mb-5 bg-body-tertiary rounded">
-                    <ul class="description liste fs-4 mt-4 py-4">
-                        <h1 class="mb-5">Critères</h1>
-                        <h2 class="mb-5">Prix :</strong>{{ products.prix}} €</h2>
-                        <li><strong>Marque :</strong>{{ products.marque}}</li>
-                        <li><strong>Année-Modèle :</strong>{{ products.model}}</li>
-                        <li><strong>Boite de vitesse :</strong>{{ products.boite}}</li>
-                        <li><strong>Puissance fiscale :</strong>{{ products.puissance}}</li>
-                        <li><strong>Soumis à LOA/LLD</strong> : Non</li>
-                        <li><strong>Mise en circulation</strong> : 07/2015</li>
-                        <li><strong>Carburant</strong>{{ products.energie}}</li>
-                        <li><strong>Type de véhicule</strong> : 4 x 4, SUV</li>
-                        <li><strong>Puissance fiscale</strong> : 16 Cv</li>
-                        <li><strong>Permis</strong> : Avec permis</li>
-                        <li><strong>Description :</strong>{{ products.description|slice(0,100) ~ '...' }}</li>
-                    </ul>
-                </div> 
-                <div class="card-footer bg-info text-white">
-                    <small class="text-white fs-5"><strong>Date de publication :</strong>{{ products.createdAt|date('d/m/Y') }}</small>
-                </div>     
-        </div>
-    </div>
-</div>
-{% endfor %}
-    <div class="Produits col-10">
-                <a href="{{ path('products.index.public') }}" class="btn btn-primary">
-                    Voir Tous Nos Produits
-                </a>
-    </div>
-</div>
+		<div class="icons">
+			<i class="fas fa-home"></i>
+			<div class="content">
+				<h3>100+</h3>
+				<p>Nouveautés</p>
+			</div>
+		</div>
+	</section>
+	<!-- Icons Container end-->
+	<div class="container my-5 d-flex -justif-content-center align-items-center">
+		<div class="row row-cols-1 row-cols-md-3 flex-wrap g-4">
+			<div class="col-12">
+				<h1 class=" heading mb-5 text-center">NOS VENTES</h1>
+			</div>
+			{% for products in products %}
+				<div class="col-12 col-md-6 col-lg-4">
+					<div class="card">
+						<img src="{{ vich_uploader_asset(products, 'imageFile') }}" class="card-img-top" alt="...">
+						<div class="card-body">
+							<h2 class="card-title">{{ products.marque}}</h2>
+							<div class="col shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+								<ul class="description liste fs-4 mt-4 py-4">
+									<h1 class="mb-5">Critères</h1>
+									<h2 class="mb-5">Prix :</strong>
+									{{ products.prix}}
+									€</h2>
+								<li>
+									<strong>Marque :</strong>
+									{{ products.marque}}</li>
+								<li>
+									<strong>Année-Modèle :</strong>
+									{{ products.model}}</li>
+								<li>
+									<strong>Boite de vitesse :</strong>
+									{{ products.boite}}</li>
+								<li>
+									<strong>Puissance fiscale :</strong>
+									{{ products.puissance}}</li>
+								<li>
+									<strong>Soumis à LOA/LLD</strong>
+									: Non</li>
+								<li>
+									<strong>Mise en circulation</strong>
+									: 07/2015</li>
+								<li>
+									<strong>Carburant</strong>
+									{{ products.energie}}</li>
+								<li>
+									<strong>Type de véhicule</strong>
+									: 4 x 4, SUV</li>
+								<li>
+									<strong>Puissance fiscale</strong>
+									: 16 Cv</li>
+								<li>
+									<strong>Permis</strong>
+									: Avec permis</li>
+								<li>
+									<strong>Description :</strong>
+									{{ products.description|slice(0,100) ~ '...' }}</li>
+							</ul>
+						</div>
+						<div class="card-footer bg-info text-white">
+							<small class="text-white fs-5">
+								<strong>Date de publication :</strong>
+								{{ products.createdAt|date('d/m/Y') }}</small>
+						</div>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+		<div class="Produits col-10">
+			<a href="{{ path('products.index.public') }}" class="btn btn-primary">
+				Voir Tous Nos Produits
+			</a>
+		</div>
+	</div>
 </div>
 
 <!--Arrivages esction-->
 
 <div class="container my-5 d-flex -justif-content-center align-items-center">
-<div class="row row-cols-1 row-cols-md-3 flex-wrap g-4">
-    <div class="col-12">
-        <h1 class=" heading mb-5 text-center">LES ARRIVAGES</h1>
-    </div>
-  {% for arrivages in arrivages %}
-    <div class="col-12 col-md-6 col-lg-4">
-    <div class="card">
-      <img src="{{ vich_uploader_asset(arrivages, 'imageFile') }}" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h2 class="card-title">{{ arrivages.marque}}</h2>
-                <div class="col shadow-lg p-3 mb-5 bg-body-tertiary rounded">
-                    <ul class="description liste fs-4 mt-4 py-4">
-                        <h1 class="mb-5">Critères</h1>
-                        <li><strong>Marque :</strong>{{ arrivages.marque}}</li>
-                        <li><strong>Année-Modèle :</strong>{{ arrivages.model}}</li>
-                        <li><strong>Boite de vitesse :</strong>{{ arrivages.boite}}</li>
-                        <li><strong>Puissance fiscale :</strong>{{ arrivages.puissance}}</li>
-                        <li><strong>Soumis à LOA/LLD</strong> : Non</li>
-                        <li><strong>Mise en circulation</strong> : 07/2015</li>
-                        <li><strong>Carburant</strong>{{ arrivages.energie}}</li>
-                        <li><strong>Type de véhicule</strong> : 4 x 4, SUV</li>
-                        <li><strong>Puissance fiscale</strong> : 16 Cv</li>
-                        <li><strong>Permis</strong> : Avec permis</li>
-                        <li><strong>Description :</strong>{{ arrivages.property|slice(0,100) ~ '...' }}</li>
-                    </ul>
-                </div>      
-                <div class="card-footer bg-info text-white">
-                    <small class="text-white fs-5"><strong>Date de publication :</strong>{{ arrivages.createdAt|date('d/m/Y') }}</small>
-                </div> 
-        </div>
-    </div>
-</div>
-{% endfor %}
-    <div class="Produits col-10">
-                <a href="{{ path('arrivages.index.public') }}" class="btn btn-primary">
-                    Voir Tous Nos arrivages
-                </a>
-    </div>
-</div>
+	<div class="row row-cols-1 row-cols-md-3 flex-wrap g-4">
+		<div class="col-12">
+			<h1 class=" heading mb-5 text-center">LES ARRIVAGES</h1>
+		</div>
+		{% for arrivages in arrivages %}
+			<div class="col-12 col-md-6 col-lg-4">
+				<div class="card">
+					<img src="{{ vich_uploader_asset(arrivages, 'imageFile') }}" class="card-img-top" alt="...">
+					<div class="card-body">
+						<h2 class="card-title">{{ arrivages.marque}}</h2>
+						<div class="col shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+							<ul class="description liste fs-4 mt-4 py-4">
+								<h1 class="mb-5">Critères</h1>
+								<li>
+									<strong>Marque :</strong>
+									{{ arrivages.marque}}</li>
+								<li>
+									<strong>Année-Modèle :</strong>
+									{{ arrivages.model}}</li>
+								<li>
+									<strong>Boite de vitesse :</strong>
+									{{ arrivages.boite}}</li>
+								<li>
+									<strong>Puissance fiscale :</strong>
+									{{ arrivages.puissance}}</li>
+								<li>
+									<strong>Soumis à LOA/LLD</strong>
+									: Non</li>
+								<li>
+									<strong>Mise en circulation</strong>
+									: 07/2015</li>
+								<li>
+									<strong>Carburant</strong>
+									{{ arrivages.energie}}</li>
+								<li>
+									<strong>Type de véhicule</strong>
+									: 4 x 4, SUV</li>
+								<li>
+									<strong>Puissance fiscale</strong>
+									: 16 Cv</li>
+								<li>
+									<strong>Permis</strong>
+									: Avec permis</li>
+								<li>
+									<strong>Description :</strong>
+									{{ arrivages.property|slice(0,100) ~ '...' }}</li>
+							</ul>
+						</div>
+						<div class="card-footer bg-info text-white">
+							<small class="text-white fs-5">
+								<strong>Date de publication :</strong>
+								{{ arrivages.createdAt|date('d/m/Y') }}</small>
+						</div>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+		<div class="Produits col-10">
+			<a href="{{ path('arrivages.index.public') }}" class="btn btn-primary">
+				Voir Tous Nos arrivages
+			</a>
+		</div>
+	</div>
 </div>
 <!-- Service Section Start-->
 
 <section id="Service" class="services">
-    <h1 class="heading">NOS SERVICES</h1>
-    <div class="boxContainer">
-        <div class="box">
-            <i class="fas fa-car"></i>
-            <h3>Car Selling</h3>
-            <p>lorem ipsum consecteturlorem ipsum consecteturlorem ipsum
-             consecteturlorem ipsum consecteturlorem ipsum consecteturlorem 
-             ipsum consecteturlorem ipsum consectetur
-            </p>
-            <button class="btn">Read More</button>
-        </div>
-                <div class="box">
-            <i class="fas fa-tools"></i>
-            <h3>Parts Repair</h3>
-            <p>lorem ipsum consecteturlorem ipsum consecteturlorem ipsum
-             consecteturlorem ipsum consecteturlorem ipsum consecteturlorem 
-             ipsum consecteturlorem ipsum consectetur
-            </p>
-            <button class="btn">Read More</button>
-        </div>
-                <div class="box">
-            <i class="fas fa-car-crash"></i>
-            <h3>Car Insurance</h3>
-            <p>lorem ipsum consecteturlorem ipsum consecteturlorem ipsum
-             consecteturlorem ipsum consecteturlorem ipsum consecteturlorem 
-             ipsum consecteturlorem ipsum consectetur
-            </p>
-            <button class="btn">Read More</button>
-        </div>
-                <div class="box">
-            <i class="fas fa-car-battery"></i>
-            <h3>Battery Replacement</h3>
-            <p>lorem ipsum consecteturlorem ipsum consecteturlorem ipsum
-             consecteturlorem ipsum consecteturlorem ipsum consecteturlorem 
-             ipsum consecteturlorem ipsum consectetur
-            </p>
-            <button class="btn">Read More</button>
-        </div>
-                <div class="box">
-            <i class="fas fa-gas-pump"></i>
-            <h3>Oil Change</h3>
-            <p>lorem ipsum consecteturlorem ipsum consecteturlorem ipsum
-             consecteturlorem ipsum consecteturlorem ipsum consecteturlorem 
-             ipsum consecteturlorem ipsum consectetur
-            </p>
-            <button class="btn">Read More</button>
-        </div>
-                <div class="box">
-            <i class="fas fa-headset"></i>
-            <h3>24*7 Support</h3>
-            <p>lorem ipsum consecteturlorem ipsum consecteturlorem ipsum
-             consecteturlorem ipsum consecteturlorem ipsum consecteturlorem 
-             ipsum consecteturlorem ipsum consectetur
-            </p>
-            <button class="btn">Read More</button>
-        </div>
-    </div>
+	<h1 class="heading">NOS SERVICES</h1>
+	<div class="boxContainer">
+		<div class="box">
+			<i class="fas fa-car"></i>
+			<h3>Car Selling</h3>
+			<p>lorem ipsum consecteturlorem ipsum consecteturlorem ipsum
+												             consecteturlorem ipsum consecteturlorem ipsum consecteturlorem 
+												             ipsum consecteturlorem ipsum consectetur
+			</p>
+
+			<a href="{{ path('contact.index') }}" class="btn btn-primary">Contactez-nous</a>
+
+		</div>
+		<div class="box">
+			<i class="fas fa-tools"></i>
+			<h3>Parts Repair</h3>
+			<p>lorem ipsum consecteturlorem ipsum consecteturlorem ipsum
+												             consecteturlorem ipsum consecteturlorem ipsum consecteturlorem 
+												             ipsum consecteturlorem ipsum consectetur
+			</p>
+			<a href="{{ path('contact.index') }}" class="btn btn-primary">Contactez-nous</a>
+		</div>
+		<div class="box">
+			<i class="fas fa-car-crash"></i>
+			<h3>Car Insurance</h3>
+			<p>lorem ipsum consecteturlorem ipsum consecteturlorem ipsum
+												             consecteturlorem ipsum consecteturlorem ipsum consecteturlorem 
+												             ipsum consecteturlorem ipsum consectetur
+			</p>
+			<button class="btn">Read More</button>
+		</div>
+		<div class="box">
+			<i class="fas fa-car-battery"></i>
+			<h3>Battery Replacement</h3>
+			<p>lorem ipsum consecteturlorem ipsum consecteturlorem ipsum
+												             consecteturlorem ipsum consecteturlorem ipsum consecteturlorem 
+												             ipsum consecteturlorem ipsum consectetur
+			</p>
+			<a href="{{ path('contact.index') }}" class="btn btn-primary">Contactez-nous</a>
+		</div>
+		<div class="box">
+			<i class="fas fa-gas-pump"></i>
+			<h3>Oil Change</h3>
+			<p>lorem ipsum consecteturlorem ipsum consecteturlorem ipsum
+												             consecteturlorem ipsum consecteturlorem ipsum consecteturlorem 
+												             ipsum consecteturlorem ipsum consectetur
+			</p>
+			<a href="{{ path('contact.index') }}" class="btn btn-primary">Contactez-nous</a>
+		</div>
+		<div class="box">
+			<i class="fas fa-headset"></i>
+			<h3>24*7 Support</h3>
+			<p>lorem ipsum consecteturlorem ipsum consecteturlorem ipsum
+												             consecteturlorem ipsum consecteturlorem ipsum consecteturlorem 
+												             ipsum consecteturlorem ipsum consectetur
+			</p>
+			<a href="{{ path('contact.index') }}" class="btn btn-primary">Contactez-nous</a>
+		</div>
+	</div>
 </section>
 <!-- Service Section End -->
 
 
 <!-- review Section Start -->
 <div class="container my-5 d-flex -justif-content-center align-items-center">
-<div class="row row-cols-1 row-cols-md-3 flex-wrap g-4">
-    <div class="col-12">
-        <h1 class=" heading mb-5 text-center">AVIS DES CLIENTS </h1>
-    </div>
-          {% for review in review %}
-           <div class="col-12 col-md-6 col-lg-4 ReviewSlider">
-                <div class="swiper-slide box text-center">
-                    <img src="{{ vich_uploader_asset(review, 'imageFile') }}" width="180px" height="180px">
-                    <div class="content">
-                        <span class="fs-3">{{ review.nom }}</span>
-                        <span class="fs-3">{{ review.prenom }}</span>
-                        <p>{{ review.message|slice(0,100) ~ '...'}}</p>
-                        <h3>Satisfait</h3>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>  
-            {% endfor %}
+	<div class="row row-cols-1 row-cols-md-3 flex-wrap g-4">
+		<div class="col-12">
+			<h1 class=" heading mb-5 text-center">AVIS DES CLIENTS
+			</h1>
+		</div>
+		{% for review in review %}
+			<div class="col-12 col-md-6 col-lg-4 ReviewSlider">
+				<div class="swiper-slide box text-center">
+					<img src="{{ vich_uploader_asset(review, 'imageFile') }}" width="180px" height="180px">
+					<div class="content">
+						<span class="fs-3">{{ review.nom }}</span>
+						<span class="fs-3">{{ review.prenom }}</span>
+						<p>{{ review.message|slice(0,100) ~ '...'}}</p>
+						<h3>Satisfait</h3>
+						<div class="stars">
+							<i class="fas fa-star"></i>
+							<i class="fas fa-star"></i>
+							<i class="fas fa-star"></i>
+							<i class="fas fa-star"></i>
+							<i class="fas fa-star"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
 
-    <div class="Produits col-10">
-         <a href="{{ path('review.index.public') }}" class="btn btn-primary">
-             Voir Tous Les avis
-         </a>
-         <a href="{{ path('review.new') }}" class="btn btn-primary">
-             Laissez-nous un mot !
-         </a>
-    </div>
+		<div class="Produits col-10">
+			<a href="{{ path('review.index.public') }}" class="btn btn-primary">
+				Voir Tous Les avis
+			</a>
+			<a href="{{ path('review.new') }}" class="btn btn-primary">
+				Laissez-nous un mot !
+			</a>
+		</div>
+	</div>
 </div>
-</div>
-<!-- review Section End -->
-
-
-{% endblock %}
+<!-- review Section End -->{% endblock %}
