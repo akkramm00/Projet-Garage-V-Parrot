@@ -3,10 +3,12 @@
 namespace App\Test\Functional;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\HttpFoundation\Response;
+
 
 class ContactTest extends WebTestCase
 {
-    public function testContact(): void
+    public function testIfSubmitContactFormIsSuccessfull(): void
     {
         $client = static::createClient();
         $crawler = $client->request('GET', '/contact');
