@@ -330,9 +330,6 @@ header .navbar a:hover{
 }.swiper-pagination-bullet-active{
     background:var(--main);
 }
-.{
-    box-shadow: var(--box_shadow);
-}
 /* Vehicules Section End*/
 
 /* Featured Section Start */
@@ -717,7 +714,16 @@ footer a:hover{
         flex-direction: column;
         justify-content: center;
         align-items: center;
-      }
+    }
+    footer .relative{
+        position: relative;
+        top: 100px;
+        right: 50px;
+        display: block;
+    }
+    footer .relative i{
+        font-size: 20px;
+    }
 
   
 }

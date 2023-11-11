@@ -11,10 +11,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class ImagesController extends AbstractController
 {
     #[Route('/images', name: 'images.index', methods: ['GET'])]
+    #[IsGranted('ROLE_ADMIN')]
+
     public function index(
         ImagesRepository $repository,
         PaginatorInterface $paginator,

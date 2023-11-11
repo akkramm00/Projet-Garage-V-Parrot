@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class ReviewController extends AbstractController
 {
@@ -102,6 +103,7 @@ class ReviewController extends AbstractController
      * @return Response
      */
     #[Route('/review/edition/{id}', 'review.edit', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_AMIN')]
     public function edit(
         ReviewRepository $repository,
         Request $request,
@@ -141,6 +143,7 @@ class ReviewController extends AbstractController
      * @return Response
      */
     #[Route('/review/suppression/{id}', 'review.delete', methods: ['GET'])]
+    #[IsGranted('ROLE_AMIN')]
     public function delete(
         EntityManagerInterface $manager,
         REviewRepository $repository,
