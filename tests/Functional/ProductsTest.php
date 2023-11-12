@@ -63,7 +63,7 @@ class ProductsTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
 
-        $this->assertRouteSame("produts");
+        $this->assertRouteSame("products");
     }
 
     public function testIfUpdateProductsIsSuccefull(): void

@@ -46,4 +46,89 @@ class ArrivagesTest extends WebTestCase
 
         $this->assertRouteSame("arrivages.index");
     }
+
+    public function testIfListArrivagesIsSuccessfull(): void
+    {
+        $client = static::createClient();
+
+        $urlGenerator = $client->getContainer()->get("router");
+
+        $entityManager = $client->getContainer()->get("doctrine.orm.entity_manager");
+
+        $user = $entityManager->find(User::class, 1);
+
+        $client->loginUser($user);
+
+        $client->request(Request::METHOD_GET, $urlGenerator->generate("arrivages"));
+
+        $this->assertResponseIsSuccessful();
+
+        $this->assertRouteSame("arrivages.index");
+    }
+
+    public function testIfUpdateArrivagesIsSuccefull(): void
+    {
+        $client = static::createClient();
+
+        $urlGenerator = $client->getContainer()->get("router");
+
+        $entityManager = $client->getContainer()->get("doctrine.orm.entity_manager");
+
+        $user = $entityManager->find(User::class, 1);
+        $arrivages = $entityManager->getRepository(Arrivages::class)->findOneBy([
+            "user" => $user
+        ]);
+
+        $client->loginUser($user);
+
+        $crawler = $client->request(
+            Request::METHOD_GET,
+            $urlGenerator->generate("arrivages.edit", ["id" => $arrivages->getId()]),
+        );
+
+        $this->assertResponseIsSuccessful();
+
+        $form = $crawler->filter("form[marque=arrivages]")->form([
+            "arrivages[marque]" => "Un arrivage 2"
+        ]);
+
+        $client->submit($form);
+
+        $this->assertResponseStatusCodeSame(Response::HTTP_FOUND);
+
+        $client->followRedirect();
+
+        $this->assertSelectorTextContains("div.alert-success", "Votre Arrivage a été modifié avec succès !");
+
+        $this->assertRouteSame("arrivages.index");
+    }
+
+    public function testIfDeleteArrivagesIsSuccessfull(): void
+    {
+        $client = static::createClient();
+
+        $urlGenerator = $client->getContainer()->get("router");
+
+        $entityManager = $client->getContainer()->get("doctrine.orm.entity_manager");
+
+        $user = $entityManager->find(User::class, 1);
+        $arrivages = $entityManager->getRepository(Arrivages::class)->findOneBy([
+            "user" => $user
+        ]);
+
+        $client->loginUser($user);
+
+        $client->request(
+            Request::METHOD_GET,
+            $urlGenerator->generate("arrivages.delete", ["id" => $arrivages->getId()]),
+        );
+
+        $this->assertResponseStatusCodeSame(Response::HTTP_FOUND);
+
+        $client->followRedirect();
+
+        $this->assertSelectorTextContains("div.alert-success", "L\'arrivage a été supprimé avec succès !");
+
+        $this->assertRouteSame("arrivages.index");
+    }
 }
