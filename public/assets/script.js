@@ -165,3 +165,22 @@ document.querySelectorAll(".themeToggle .themeBtn").forEach((btn) => {
 //         },
 //     },
 // });
+
+// script.js
+document.addEventListener('DOMContentLoaded', function () {
+    const stars = document.querySelectorAll('.star');
+    const ratingContainer = document.getElementById('rating-container');
+
+    stars.forEach(star => {
+        star.addEventListener('click', () => {
+            const value = star.getAttribute('data-value');
+            // Envoyer la valeur à votre backend via une requête AJAX par exemple
+            console.log(`Vous avez noté ${value} étoiles.`);
+            resetStars();
+        });
+    });
+
+    function resetStars() {
+        stars.forEach(star => star.classList.remove('active'));
+    }
+});
