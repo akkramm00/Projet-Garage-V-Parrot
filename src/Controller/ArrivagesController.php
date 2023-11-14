@@ -6,6 +6,8 @@ use App\Entity\Arrivages;
 use App\Form\ArrivagesType;
 use App\Repository\ArrivagesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
+use Symfony\Contracts\Cache\ItemInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -46,8 +48,14 @@ class ArrivagesController extends AbstractController
         PaginatorInterface $paginator,
         Request $request
     ): Response {
+        $cache = new FilesystemAdapter();
+        $data = $cache->get('arrivages', function (ItemInterface $item) use ($repository) {
+            $item->expiresAfter(15);
+            return $repository->findPublicArrivages(null);
+        });
+
         $arrivages = $paginator->paginate(
-            $repository->findPublicArrivages(null),
+            $data,
             $request->query->getInt('page', 1),
             10
         );

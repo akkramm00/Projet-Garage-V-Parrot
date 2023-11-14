@@ -7,11 +7,13 @@ use App\Form\ProductsType;
 use App\Repository\ProductsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Contracts\Cache\ItemInterface;
 
 
 class ProductsController extends AbstractController
@@ -48,8 +50,14 @@ class ProductsController extends AbstractController
         PaginatorInterface $paginator,
         Request $request
     ): Response {
+        $cache = new FilesystemAdapter();
+        $data = $cache->get('products', function (ItemInterface $item) use ($repository) {
+            $item->expiresAfter(15);
+            return $repository->findPublicProducts(null);
+        });
+
         $products = $paginator->paginate(
-            $repository->findPublicProducts(null),
+            $data,
             $request->query->getInt('page', 1),
             10
         );
