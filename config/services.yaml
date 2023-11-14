@@ -46,3 +46,7 @@ services:
     
     knp_paginator:
         class: Knp\Component\Pager\Paginator
+
+    
+    App\EventListener\ExceptionListener:
+        tags: [kernel.event_listener]
