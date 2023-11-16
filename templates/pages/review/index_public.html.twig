@@ -23,6 +23,11 @@ img{
 
 
 <body>
+
+	{% block login %}
+		{% include "partials/_login.html.twig" %}
+	{% endblock %}
+    
 <div class="container-fluid banner py-5">
 <div class="container my-5 d-flex -justif-content-center align-items-center">
 <div class="row row-cols-1 row-cols-md-3 flex-wrap g-5">

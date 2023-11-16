@@ -26,6 +26,11 @@
 </style>
 
 <body>
+
+	{% block login %}
+		{% include "partials/_login.html.twig" %}
+	{% endblock %}
+
 <div class="container-fluid banner py-5">
     <div class="container my-5">
         <div class="row d-flex justify-content-center align-items-center my-5">
@@ -33,7 +38,7 @@
             <div class="row my-5">
             </div>
                 <div class="row my-5">
-                    <h1 class="mt-4 text-center heading">FORMULAIRE DE CONTACT</h1>
+                    <h1 class="mt-4 text-center text-white heading">FORMULAIRE DE CONTACT</h1>
 
                     {# Lire et afficher un message flash de type 'success' #}
                     {% for message in app.flashes('success') %}

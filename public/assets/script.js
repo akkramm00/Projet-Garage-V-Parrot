@@ -38,61 +38,6 @@ document.querySelector(".home").onmouseleave = (e) => {
     });
 };
 
-// //Swiper JS for Vehicules Slider
-// var swiper= new Swiper(".VehiculesSlider", {
-//     grabCursor: true,
-//     spaceBetween: 20,
-//     centeredSlides: true,
-//     loop: true,
-//     autoplay: {
-//         delay: 2000,
-//         disableOnInteraction: false,
-//     },
-//     pagination: {
-//         el: ".swiper-pagination",
-//         clickable: true,
-//     },
-//     // This is For Responsive
-//     breakpoints: {
-//         0: {
-//             slidesPerView: 1,
-//         },
-//         768: {
-//             slidesPerView: 2,
-//         },
-//         1024: {
-//             slidesPerView: 3
-//         },
-//     },
-// });
-
-// // Swiper JS FOR featured Slider
-// var swiper= new Swiper(".featureslider", {
-//     grabCursor: true,
-//     spaceBetween: 20,
-//     centeredSlides: true,
-//     loop: true,
-//     autoplay: {
-//         delay: 2000,
-//         disableOnInteraction: false,
-//     },
-//     pagination: {
-//         el: ".swiper-pagination",
-//         clickable: true,
-//     },
-//     // This is For Responsive
-//     breakpoints: {
-//         0: {
-//             slidesPerView: 1,
-//         },
-//         768: {
-//             slidesPerView: 2,
-//         },
-//         1024: {
-//             slidesPerView: 3
-//         },
-//     },
-// });
 //Theme Toggle
 let ThemeToggle = document.querySelector(".themeToggle");
 let ToggleBtn = document.querySelector(".ToggleBtn");
@@ -109,62 +54,7 @@ document.querySelectorAll(".themeToggle .themeBtn").forEach((btn) => {
     };
 });
 
-// // Swiper JS FOR featured Slider
-// var swiper= new Swiper(".featureslider", {
-//     grabCursor: true,
-//     spaceBetween: 20,
-//     centeredSlides: true,
-//     loop: true,
-//     autoplay: {
-//         delay: 2000,
-//         disableOnInteraction: false,
-//     },
-//     pagination: {
-//         el: ".swiper-pagination",
-//         clickable: true,
-//     },
-//     // This is For Responsive
-//     breakpoints: {
-//         0: {
-//             slidesPerView: 1,
-//         },
-//         768: {
-//             slidesPerView: 2,
-//         },
-//         1024: {
-//             slidesPerView: 3
-//         },
-//     },
-// });
 
-// Swiper JS for Review Slider
-
-// var swiper= new Swiper(".ReviewSlider", {
-//     grabCursor: true,
-//     spaceBetween: 20,
-//     centeredSlides: true,
-//     loop: true,
-//     autoplay: {
-//         delay: 2000,
-//         disableOnInteraction: false,
-//     },
-//     pagination: {
-//         el: ".swiper-pagination",
-//         clickable: true,
-//     },
-//     // This is For Responsive
-//     breakpoints: {
-//         0: {
-//             slidesPerView: 1,
-//         },
-//         768: {
-//             slidesPerView: 2,
-//         },
-//         1024: {
-//             slidesPerView: 3
-//         },
-//     },
-// });
 
 // script.js
 document.addEventListener('DOMContentLoaded', function () {
