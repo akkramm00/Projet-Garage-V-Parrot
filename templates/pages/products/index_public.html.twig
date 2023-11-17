@@ -80,19 +80,19 @@
                 <div class="col-12 col-md-6 col-lg-5 critéres text-start d-flex justify-content-center align-items-center py-4">
                     <ul class="description liste fs-4 mt-4 py-4">
                         <h1 class="mb-5">Critères</h1>
-                        <li><strong>Marque :</strong>{{ products.marque}}</li>
-                        <li><strong>Année-Modèle :</strong>{{ products.model}}</li>
-                        <li><strong>Boite de vitesse :</strong>{{ products.boite}}</li>
-                        <li><strong>Puissance fiscale :</strong>{{ products.puissance}}</li>
+                        <li><strong>Marque :</strong> {{ products.marque}}</li>
+                        <li><strong>Année-Modèle :</strong> {{ products.model}}</li>
+                        <li><strong>Mise en circulation</strong>: {{ products.year }}</li>
+                        <li><strong>Kélométrage</strong>: {{ products.kelometre }}</li>
+                        <li><strong>Boite de vitesse :</strong> {{ products.boite}}</li>
+                        <li><strong>Puissance fiscale :</strong> {{ products.puissance}}</li>
+                        <li><strong>Carburant</strong>: {{ products.energie}}</li>
                         <li><strong>Soumis à LOA/LLD</strong> : Non</li>
-                        <li><strong>Mise en circulation</strong> : 07/2015</li>
-                        <li><strong>Carburant</strong>{{ products.energie}}</li>
-                        <li><strong>Type de véhicule</strong> : 4 x 4, SUV</li>
                         <li><strong>Puissance fiscale</strong> : 16 Cv</li>
                         <li><strong>Nombre de place</strong> : 5</li>
                         <li><strong>Permis</strong> : Avec permis</li>
                         <li><strong>Disponibilité des pièces</strong> : Non renseignée</li>
-                        <li><strong>Description :</strong>{{ products.description|slice(0,100) ~ '...' }}</li>
+                        <li><strong>Description :</strong> {{ products.description|slice(0,100) ~ '...' }}</li>
                     </ul>
                 </div>
                     <div class="Produits col-10">

@@ -8,15 +8,7 @@
 	{% block login %}
 		{% include "partials/_login.html.twig" %}
 	{% endblock %}
-
-	<!--Home Section Start-->
-	<section id="Home" class="home">
-		<h3 data-speed="-2" class="homeParalexEffect">
-			<span>G</span>.ParroT</h3>
-		<img data-speed="5" class="homeParalexEffect" src="{{ asset('images/Présentation2.jpg') }}" alt="">
-	</section>
-	<!--Home Section End-->
-
+	
 	{% for message in app.flashes('success') %}
 		<div class="alert alert-success text-center fs-4 mt-4">
 			{{ message}}
@@ -28,6 +20,15 @@
 			{{ message}}
 		</div>
 	{% endfor %}
+
+	<!--Home Section Start-->
+	<section id="Home" class="home">
+		<h3 data-speed="-2" class="homeParalexEffect">
+			<span>G</span>.ParroT</h3>
+		<img data-speed="5" class="homeParalexEffect" src="{{ asset('images/Présentation2.jpg') }}" alt="">
+	</section>
+	<!--Home Section End-->
+
 	<!-- Icons Container Start-->
 	<section class="iconsContainer">
 		<div class="icons">
@@ -86,7 +87,13 @@
 									<strong>Marque :</strong>
 									{{ products.marque}}</li>
 								<li>
-									<strong>Année-Modèle :</strong>
+									<strong>Année :</strong>
+									{{ products.year }}</li>
+								<li>
+									<strong>Kélométrage :</strong>
+									{{ products.kelometre}}</li>
+								<li>
+									<strong>Modèle :</strong>
 									{{ products.model}}</li>
 								<li>
 									<strong>Boite de vitesse :</strong>

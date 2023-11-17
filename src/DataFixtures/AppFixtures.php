@@ -40,7 +40,9 @@ class AppFixtures extends Fixture
             $products = new Products();
             $products->setMarque($marqueOptions[array_rand($marqueOptions)])
                 ->setModel($this->faker->word())
-                ->setPrix(mt_rand('15000', '40000'))
+                ->setPrix(mt_rand('15000', '50000'))
+                ->setYear(mt_rand('2018', '2023'))
+                ->setKelometre(mt_rand('10000', '50000'))
                 ->setBoite((rand(0, 1) ? 'mecanique' : 'Automatique'))
                 ->setEnergie($energieOptions[array_rand($energieOptions)])
                 ->setPuissance($puissanceOptions[array_rand($puissanceOptions)])

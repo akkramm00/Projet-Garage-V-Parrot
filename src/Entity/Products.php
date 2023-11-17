@@ -35,6 +35,17 @@ class Products
     #[Assert\Positive()]
     private ?int $Prix;
 
+    #[ORM\Column(length: 50)]
+    #[Assert\NotBlank()]
+    #[Assert\Length(min: 2, max: 50)]
+    private ?int $year = null;
+
+
+    #[ORM\Column(length: 255)]
+    #[Assert\NotBlank()]
+    #[Assert\Length(min: 2, max: 50)]
+    private ?string $kelometre = null;
+
     #[ORM\Column(length: 50, nullable: true)]
     #[Assert\Length(min: 2, max: 50)]
     private ?string $Boite = null;
@@ -49,7 +60,7 @@ class Products
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank()]
-    #[Assert\Length(min: 2, max: 50)]
+    #[Assert\Length(min: 2, max: 300)]
     private ?string $description;
 
     #[Vich\UploadableField(mapping: 'products_images', fileNameProperty: 'imageName')]
@@ -68,7 +79,6 @@ class Products
     #[ORM\Column]
     #[Assert\NotNull()]
     private ?\DateTimeImmutable $updatedAt = null;
-
 
 
     public function __construct()
@@ -114,6 +124,30 @@ class Products
     public function setPrix(float $Prix): static
     {
         $this->Prix = $Prix;
+
+        return $this;
+    }
+
+    public function getYear(): ?string
+    {
+        return $this->year;
+    }
+
+    public function setYear(int $year): static
+    {
+        $this->year = $year;
+
+        return $this;
+    }
+
+    public function getKelometre(): ?string
+    {
+        return $this->kelometre;
+    }
+
+    public function setKelometre(string $kelometre): static
+    {
+        $this->kelometre = $kelometre;
 
         return $this;
     }
