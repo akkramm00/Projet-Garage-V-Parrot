@@ -188,7 +188,7 @@ class ProductsController extends AbstractController
     }
 
     /************************************************************************* */
-    #[Security("is_granted('ROLE_USER') and products.getIsPublic === true")]
+    #[IsGranted("is_granted('ROLE_USER') and products.getIsPublic === true")]
     #[Route('/products/show/{id}', 'products.show', methods: ['GET'])]
     public function show(
         ProductsRepository $repository,
