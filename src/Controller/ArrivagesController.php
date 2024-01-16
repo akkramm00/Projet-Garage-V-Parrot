@@ -26,12 +26,18 @@ class ArrivagesController extends AbstractController
      * @param Request $request
      * @return Response
      */
+    #[IsGranted('ROLE_AMIN')]
     #[Route('/arrivages', name: 'arrivages.index', methods: ['GET'])]
     public function index(
         ArrivagesRepository $repository,
         PaginatorInterface $paginator,
         Request $request
     ): Response {
+
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('security.login');
+        }
+
         $arrivages = $paginator->paginate(
             $repository->findAll(),
             $request->query->getInt('page', 1),
@@ -42,12 +48,18 @@ class ArrivagesController extends AbstractController
         ]);
     }
     /********************************************************* */
+    #[IsGranted('ROLE_USER')]
     #[Route('/arrivages/publique', 'arrivages.index.public', methods: ['GET'])]
     public function indexPublic(
         ArrivagesRepository $repository,
         PaginatorInterface $paginator,
         Request $request
     ): Response {
+
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('security.login');
+        }
+
         $cache = new FilesystemAdapter();
         $data = $cache->get('arrivages', function (ItemInterface $item) use ($repository) {
             $item->expiresAfter(15);

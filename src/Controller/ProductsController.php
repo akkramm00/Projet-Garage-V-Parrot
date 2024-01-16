@@ -26,12 +26,18 @@ class ProductsController extends AbstractController
      * @param Request $request
      * @return Response
      */
+    #[IsGranted('ROLE_AMIN')]
     #[Route('/products', name: 'products', methods: ['GET'])]
     public function index(
         ProductsRepository $repository,
         PaginatorInterface $paginator,
         Request $request
     ): Response {
+
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('security.login');
+        }
+
         $products = $paginator->paginate(
             $repository->findAll(),
             $request->query->getInt('page', 1),
@@ -44,12 +50,18 @@ class ProductsController extends AbstractController
     }
 
     /************************************************************************* */
+    #[IsGranted('ROLE_USER')]
     #[Route('/products/publique', 'products.index.public', methods: ['GET'])]
     public function indexPublic(
         ProductsRepository $repository,
         PaginatorInterface $paginator,
         Request $request
     ): Response {
+
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('security.login');
+        }
+
         $cache = new FilesystemAdapter();
         $data = $cache->get('products', function (ItemInterface $item) use ($repository) {
             $item->expiresAfter(15);

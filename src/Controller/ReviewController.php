@@ -24,12 +24,18 @@ class ReviewController extends AbstractController
      * @param Request $request
      * @return Response
      */
+    #[IsGranted('ROLE_USER')]
     #[Route('/review', name: 'review', methods: ['GET'])]
     public function index(
         ReviewRepository $repository,
         PaginatorInterface $paginator,
         Request $request
     ): Response {
+
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('security.login');
+        }
+
         $review = $paginator->paginate(
             $repository->findAll(),
             $request->query->getInt('page', 1),
@@ -41,12 +47,18 @@ class ReviewController extends AbstractController
     }
 
     /************************************************************************* */
+    #[IsGranted('ROLE_USER')]
     #[Route('/review/publique', 'review.index.public', methods: ['GET'])]
     public function indexPublic(
         ReviewRepository $repository,
         PaginatorInterface $paginator,
         Request $request
     ): Response {
+
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('security.login');
+        }
+
         $review = $paginator->paginate(
             $repository->findPublicReview(null),
             $request->query->getInt('page', 1),

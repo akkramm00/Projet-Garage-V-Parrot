@@ -12,13 +12,18 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class HomeController extends AbstractController
 {
-    #[IsGranted('IS_AUTHENTICATED_FULLY', message: 'Accès interdit', statusCode: 403, redirectTo: 'security.login')]
+    #[IsGranted('ROLE_USER')]
     #[Route('/', 'home.index', methods: ['GET'])]
     public function index(
         ProductsRepository $productsRepository,
         ArrivagesRepository $arrivagesRepository,
         ReviewRepository $reviewRepository,
     ): Response {
+
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('security.login');
+        }
+
         return $this->render('pages/home.html.twig', [
             'products' => $productsRepository->findPublicProducts(3),
             'arrivages' => $arrivagesRepository->findPublicArrivages(3),
