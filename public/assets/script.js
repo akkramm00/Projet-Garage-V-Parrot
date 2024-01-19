@@ -38,24 +38,6 @@ document.querySelector(".home").onmouseleave = (e) => {
     });
 };
 
-//Theme Toggle
-let ThemeToggle = document.querySelector(".themeToggle");
-let ToggleBtn = document.querySelector(".ToggleBtn");
-
-ToggleBtn.onclick = () => {
-    ThemeToggle.classList.toggle("active");
-    Menu.classList.remove("fa-times");
-    Navbar.classList.remove("active");
-};
-document.querySelectorAll(".themeToggle .themeBtn").forEach((btn) => {
-    btn.onclick = () => {
-        let color = btn.style.background;
-        document.querySelector(":root").style.setProperty("--main" ,color);
-    };
-});
-
-
-
 // script.js
 document.addEventListener('DOMContentLoaded', function () {
     const stars = document.querySelectorAll('.star');
